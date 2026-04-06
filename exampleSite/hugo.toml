@@ -10,15 +10,9 @@ theme = "hugo_theme"
 
 [menu]
   [[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 10
-    [menu.main.params]
-      icon = "home"
-  [[menu.main]]
-    name = "Blog"
+    name = "Showcase"
     url = "/blog/"
-    weight = 20
+    weight = 10
     [menu.main.params]
       icon = "document"
   [[menu.main]]

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=42421&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>:root{--base00:#1F1F28;--base01:#16161D;--base02:#223249;--base03:#54546D;--base04:#727169;--base05:#DCD7BA;--base06:#C8C093;--base07:#717C7C;--base08:#C34043;--base09:#FFA066;--base0A:#C0A36E;--base0B:#76946A;--base0C:#6A9589;--base0D:#7E9CD8;--base0E:#957FB8;--base0F:#D27E99;--tui-colorscheme-name:Kanagawa;
@@ -9,13 +9,13 @@
   <title>Panels · tui theme demo</title>
 <meta name="description" content="Every titled container in the theme is one parametric partial.">
 
-<link rel="canonical" href="http://localhost:42421/blog/panels/">
+<link rel="canonical" href="http://localhost:1313/blog/panels/">
 <link rel="icon" href="/favicon.ico">
 
 
 <meta property="og:title" content="Panels · tui theme demo">
 <meta property="og:description" content="Every titled container in the theme is one parametric partial.">
-<meta property="og:url" content="http://localhost:42421/blog/panels/">
+<meta property="og:url" content="http://localhost:1313/blog/panels/">
 <meta property="og:site_name" content="tui theme demo">
 <meta property="og:type" content="article">
 
@@ -35,7 +35,7 @@
 
 
 
-  <link rel="stylesheet" href="/css/main.3d2c6f9829c45cd9861be08f5da5d6b2cdf01ae5da459c7b0e8634309020c863.css" integrity="sha256-PSxvmCnEXNmGG&#43;CPXaXWss3wGuXaRZx7DoY0MJAgyGM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/main.73c899f65788e03c0547deb38c083cb0c97b97f9bb48b53eb1a77089f58da1c4.css" integrity="sha256-c8iZ9leI4DwFR96zjAg8sMl7l/m7SLU&#43;sadwifWNocQ=" crossorigin="anonymous">
 
   
 </head>
@@ -48,12 +48,8 @@
 <span class="site-nav__title-text">tui theme demo</span>
     </a>
     <ul class="site-nav__menu"><li class="site-nav__item">
-          <a href="/" class="site-nav__link"><span class="icon site-nav__icon" aria-hidden="true" data-icon="home">&#xf015;</span>
-<span class="site-nav__link-text">Home</span>
-          </a>
-        </li><li class="site-nav__item">
           <a href="/blog/" class="site-nav__link is-active"><span class="icon site-nav__icon" aria-hidden="true" data-icon="document">&#xf15c;</span>
-<span class="site-nav__link-text">Blog</span>
+<span class="site-nav__link-text">Showcase</span>
           </a>
         </li><li class="site-nav__item">
           <a href="/about/" class="site-nav__link"><span class="icon site-nav__icon" aria-hidden="true" data-icon="user">&#xf007;</span>
@@ -67,7 +63,7 @@
 
   <div class="panel__header"><span class="panel__title">Panels</span></div><div class="panel__note">(2 min)</div><div class="panel__content js-preview-content"><nav class="breadcrumbs" aria-label="Breadcrumb">
   <ol>
-    <li><a href="/">Home</a></li><li><a href="/blog/">Blog</a></li><li aria-current="page">Panels</li></ol>
+    <li><a href="/">Home</a></li><li><a href="/blog/">Showcase</a></li><li aria-current="page">Panels</li></ol>
 </nav>
 <div class="single__meta">
 <div class="post-meta">
@@ -98,7 +94,6 @@ a different <code>variant</code>. Pass a dict with <code>title</code>, <code>num
 and content:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go-html-template" data-lang="go-html-template"><span class="line"><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="nx">partial</span><span class="w"> </span><span class="s">&#34;panel.html&#34;</span><span class="w"> </span><span class="o">(</span><span class="nx">dict</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;title&#34;</span><span class="w">   </span><span class="s">&#34;Posts&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;number&#34;</span><span class="w">  </span><span class="nx">1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;variant&#34;</span><span class="w"> </span><span class="s">&#34;list&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;items&#34;</span><span class="w">   </span><span class="na">.Pages</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="o">)</span><span class="w"> </span><span class="cp">}}</span>
@@ -107,8 +102,7 @@ and content:</p>
 highlight together.</p>
 <div class="panel">
 
-  <div class="panel__header"><span class="panel__number">[1]</span>
-      <span class="panel__separator"></span><span class="panel__title">About</span></div><div class="panel__content"><p>A titled container with freeform HTML content. The number, separator, and title sit on the top border.</p></div>
+  <div class="panel__header"><span class="panel__title">About</span></div><div class="panel__content"><p>A titled container with freeform HTML content. The title sits on the top border.</p></div>
 </div>
 
 <h2 id="list--preview">List + Preview</h2>
@@ -171,8 +165,7 @@ items are plain links to the full pages.</p>
 columns when wide. Resize the window to see both states.</p>
 <div class="panel panel--tab js-check-width">
 
-  <div class="panel__header"><span class="panel__number">[3]</span>
-      <span class="panel__separator"></span><span class="panel__title">Tabs</span><span class="panel__separator"></span>
+  <div class="panel__header"><span class="panel__title">Tabs</span><span class="panel__separator"></span>
         <div class="panel__tabs"><span class="panel__tab panel__tab--active"
                   data-tab-id="tab-0"
                   data-tab-num="1"
@@ -195,7 +188,7 @@ columns when wide. Resize the window to see both states.</p>
 <p>A prompt-style wrapper. The border and title switch to <code>--base0C</code> on
 focus and the textarea auto-grows as you type.</p>
 <div class="panel panel--input">
-    <div class="panel__header"><span class="panel__number">[4]</span><span class="panel__separator"></span><span class="panel__title">Script</span>
+    <div class="panel__header"><span class="panel__title">Script</span>
     </div><div class="panel__note">(auto-grows)</div>
     <div class="panel__content">
       <textarea placeholder="type here…" spellcheck="false">#!/bin/bash

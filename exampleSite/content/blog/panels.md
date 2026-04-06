@@ -12,7 +12,6 @@ and content:
 ```go-html-template
 {{ partial "panel.html" (dict
   "title"   "Posts"
-  "number"  1
   "variant" "list"
   "items"   .Pages
 ) }}
@@ -23,7 +22,7 @@ and content:
 Freeform HTML in a titled border. Hover to see the border and header
 highlight together.
 
-{{< panel-demo variant="" title="About" number="1" content="<p>A titled container with freeform HTML content. The number, separator, and title sit on the top border.</p>" >}}
+{{< panel-demo variant="" title="About" content="<p>A titled container with freeform HTML content. The title sits on the top border.</p>" >}}
 
 ## List + Preview
 
@@ -41,11 +40,11 @@ items are plain links to the full pages.
 Dual-mode: tab switchers in the border when narrow, side-by-side
 columns when wide. Resize the window to see both states.
 
-{{< panel-demo variant="tab" title="Tabs" number="3" note="resize window" >}}
+{{< panel-demo variant="tab" title="Tabs" note="resize window" >}}
 
 ## Input
 
 A prompt-style wrapper. The border and title switch to `--base0C` on
 focus and the textarea auto-grows as you type.
 
-{{< panel-demo variant="input" title="Script" number="4" note="auto-grows" >}}
+{{< panel-demo variant="input" title="Script" note="auto-grows" >}}

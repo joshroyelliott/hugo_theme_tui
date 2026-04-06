@@ -2,7 +2,7 @@
 {
   "title":       "Icons",
   "url":         "/blog/icons/",
-  "permalink":   "http://localhost:42421/blog/icons/",
+  "permalink":   "http://localhost:1313/blog/icons/",
   "date":        "2025-01-08",
   "tags":        ["icons","typography"],
   "summary":     "Nerd Font glyphs looked up by name from a single data file.",

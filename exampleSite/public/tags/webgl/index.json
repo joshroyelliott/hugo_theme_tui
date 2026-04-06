@@ -2,7 +2,7 @@
 {
   "title":       "3D Models",
   "url":         "/blog/3d-models/",
-  "permalink":   "http://localhost:42421/blog/3d-models/",
+  "permalink":   "http://localhost:1313/blog/3d-models/",
   "date":        "2025-04-20",
   "tags":        ["three.js","webgl"],
   "summary":     "Lazy-loaded Three.js viewer that reads its colours from the palette.",

@@ -2,7 +2,7 @@
 {
   "title":       "Icons",
   "url":         "/blog/icons/",
-  "permalink":   "http://localhost:42421/blog/icons/",
+  "permalink":   "http://localhost:1313/blog/icons/",
   "date":        "2025-01-08",
   "tags":        ["icons","typography"],
   "summary":     "Nerd Font glyphs looked up by name from a single data file.",
@@ -12,7 +12,7 @@
 {
   "title":       "Theme",
   "url":         "/blog/theme/",
-  "permalink":   "http://localhost:42421/blog/theme/",
+  "permalink":   "http://localhost:1313/blog/theme/",
   "date":        "2025-01-05",
   "tags":        ["palette","typography"],
   "summary":     "Palette and typography flow from a single data file.",

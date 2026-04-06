@@ -2,7 +2,7 @@
 {
   "title":       "Tinted Images",
   "url":         "/blog/tinted-images/",
-  "permalink":   "http://localhost:42421/blog/tinted-images/",
+  "permalink":   "http://localhost:1313/blog/tinted-images/",
   "date":        "2025-01-10",
   "tags":        ["palette","images"],
   "summary":     "Monochrome images tinted to any base16 colour with CSS mask-image.",

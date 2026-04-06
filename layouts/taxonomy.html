@@ -8,7 +8,6 @@
 {{- $body.Add "html" "</ul>" -}}
 {{ partial "panel.html" (dict
   "title" .Title
-  "number" 1
   "variant" "preview"
   "count" (printf "%d terms" (len $terms))
   "content" ($body.Get "html")

@@ -2,7 +2,7 @@
 {
   "title":       "Mermaid Diagrams",
   "url":         "/blog/mermaid-diagrams/",
-  "permalink":   "http://localhost:42421/blog/mermaid-diagrams/",
+  "permalink":   "http://localhost:1313/blog/mermaid-diagrams/",
   "date":        "2025-03-15",
   "tags":        ["mermaid","diagrams"],
   "summary":     "Flowcharts and sequences coloured by the site palette.",

@@ -2,7 +2,7 @@
 {
   "title":       "Layouts",
   "url":         "/blog/layouts/",
-  "permalink":   "http://localhost:42421/blog/layouts/",
+  "permalink":   "http://localhost:1313/blog/layouts/",
   "date":        "2025-01-22",
   "tags":        ["layout","grid"],
   "summary":     "Page skeleton and a small family of responsive grid classes.",

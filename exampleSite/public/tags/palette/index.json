@@ -2,7 +2,7 @@
 {
   "title":       "Tinted Images",
   "url":         "/blog/tinted-images/",
-  "permalink":   "http://localhost:42421/blog/tinted-images/",
+  "permalink":   "http://localhost:1313/blog/tinted-images/",
   "date":        "2025-01-10",
   "tags":        ["palette","images"],
   "summary":     "Monochrome images tinted to any base16 colour with CSS mask-image.",
@@ -12,7 +12,7 @@
 {
   "title":       "Theme",
   "url":         "/blog/theme/",
-  "permalink":   "http://localhost:42421/blog/theme/",
+  "permalink":   "http://localhost:1313/blog/theme/",
   "date":        "2025-01-05",
   "tags":        ["palette","typography"],
   "summary":     "Palette and typography flow from a single data file.",

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Images on tui theme demo</title>
-    <link>http://localhost:42421/tags/images/</link>
+    <link>http://localhost:1313/tags/images/</link>
     <description>Recent content in Images on tui theme demo</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Jan 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:42421/tags/images/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/images/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tinted Images</title>
-      <link>http://localhost:42421/blog/tinted-images/</link>
+      <link>http://localhost:1313/blog/tinted-images/</link>
       <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:42421/blog/tinted-images/</guid>
+      <guid>http://localhost:1313/blog/tinted-images/</guid>
       <description>Monochrome images tinted to any base16 colour with CSS mask-image.</description>
     </item>
   </channel>

@@ -2,7 +2,7 @@
 {
   "title":       "Nav",
   "url":         "/blog/nav/",
-  "permalink":   "http://localhost:42421/blog/nav/",
+  "permalink":   "http://localhost:1313/blog/nav/",
   "date":        "2025-01-19",
   "tags":        ["nav","layout","responsive"],
   "summary":     "Chevron-clipped bar with a title tab and link pills.",

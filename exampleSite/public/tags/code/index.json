@@ -2,7 +2,7 @@
 {
   "title":       "Syntax Highlighting",
   "url":         "/blog/syntax-highlighting/",
-  "permalink":   "http://localhost:42421/blog/syntax-highlighting/",
+  "permalink":   "http://localhost:1313/blog/syntax-highlighting/",
   "date":        "2025-01-05",
   "tags":        ["chroma","code"],
   "summary":     "Code blocks coloured via Chroma, mapped to the base16 palette.",

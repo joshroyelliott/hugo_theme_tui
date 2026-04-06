@@ -102,8 +102,8 @@
     padding: 0.4rem 0.6rem;
     background: var(--base01);
     border-radius: 3px;
-    .icon { color: var(--base0D); font-size: 1.1rem; }
-    code { background: transparent; padding: 0; color: var(--base04); font-size: 0.8rem; }
+    .icon { color: var(--base0D); font-size: 1.1rem; min-width: 1.3em; text-align: center; flex-shrink: 0; }
+    code { background: transparent; padding: 0; color: var(--base04); font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
   }
 }
 

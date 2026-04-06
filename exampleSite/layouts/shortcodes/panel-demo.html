@@ -1,0 +1,101 @@
+{{/*
+  panel-demo.html — exampleSite-only helper that renders self-contained panel
+  demos inline inside a blog post.
+
+  Accepts:
+    variant  "" | list-preview | tab | input
+    title    string
+    number   string
+    note     string
+    content  HTML string (plain variant only)
+*/}}
+{{- $variant := .Get "variant" | default "" -}}
+{{- $title   := .Get "title"   | default "Panel" -}}
+{{- $number  := .Get "number"  | default "" -}}
+{{- $note    := .Get "note"    | default "" -}}
+{{- $content := .Get "content" | default "" -}}
+
+{{- if eq $variant "list-preview" -}}
+  {{/* Paired list + preview in a grid, with inline JS for the interaction. */}}
+  <div class="grid-list-preview" style="margin:1rem 0;">
+    <div class="panel panel--list" tabindex="0" role="region" data-count="1 of 3">
+      <div class="panel__header">
+        <span class="panel__number">[1]</span><span class="panel__separator"></span>
+        <span class="panel__title">Items</span>
+      </div>
+      <div class="panel__content">
+        <ul class="panel__list">
+          <li class="panel__list-item"><a href="#" class="panel__list-link js-demo-preview-link panel__list-link--active" data-preview-url="#demo-preview-1"><span class="panel__list-title">First item</span><span class="panel__list-meta">March 1, 2025</span></a></li>
+          <li class="panel__list-item"><a href="#" class="panel__list-link js-demo-preview-link" data-preview-url="#demo-preview-2"><span class="panel__list-title">Second item</span><span class="panel__list-meta">February 14, 2025</span></a></li>
+          <li class="panel__list-item"><a href="#" class="panel__list-link js-demo-preview-link" data-preview-url="#demo-preview-3"><span class="panel__list-title">Third item</span><span class="panel__list-meta">January 5, 2025</span></a></li>
+        </ul>
+      </div>
+      <div class="js-scroll-indicator" aria-hidden="true"></div>
+    </div>
+    <div class="panel panel--preview" tabindex="0" role="region">
+      <div class="panel__header">
+        <span class="panel__number">[2]</span><span class="panel__separator"></span>
+        <span class="panel__title js-demo-preview-title">First item</span>
+      </div>
+      <div class="panel__content js-demo-preview-content">
+        <div id="demo-preview-1"><p>This is the preview for the first item. Click a different entry in the list panel to swap the content here.</p><p>On real list pages (like the blog index), <code>list-preview.js</code> fetches <code>index.json</code> once and swaps from memory. This demo uses inline content instead.</p></div>
+        <div id="demo-preview-2" style="display:none"><p>Second item selected. The preview title updates and the list panel counter tracks which item is active.</p><p>The scroll indicator on the right edge of each panel updates as content changes height.</p></div>
+        <div id="demo-preview-3" style="display:none"><p>Third item. On pages without JavaScript the list items are plain links that navigate to the full page &mdash; the preview is a progressive enhancement.</p></div>
+      </div>
+      <div class="js-scroll-indicator" aria-hidden="true"></div>
+    </div>
+  </div>
+  <script type="module">
+  {
+    const links = document.querySelectorAll('.js-demo-preview-link');
+    const title = document.querySelector('.js-demo-preview-title');
+    const content = document.querySelector('.js-demo-preview-content');
+    const listPanel = links[0]?.closest('.panel--list');
+    links.forEach((link, i) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        links.forEach(l => l.classList.remove('panel__list-link--active'));
+        link.classList.add('panel__list-link--active');
+        if (listPanel) listPanel.setAttribute('data-count', `${i+1} of ${links.length}`);
+        if (title) title.textContent = link.querySelector('.panel__list-title').textContent;
+        content.querySelectorAll(':scope > div').forEach(d => d.style.display = 'none');
+        const target = document.querySelector(link.dataset.previewUrl);
+        if (target) target.style.display = '';
+      });
+    });
+  }
+  </script>
+{{- else if eq $variant "tab" -}}
+  {{ partial "panel.html" (dict
+    "title"    $title
+    "number"   (int $number)
+    "variant"  "tab"
+    "note"     $note
+    "checkWidth" true
+    "tabs" (slice
+      (dict "title" "Narrow"   "content" "<p>Below the width threshold, tab names in the border act as switchers.</p>")
+      (dict "title" "Wider"    "content" "<p>Once wide enough, all tabs render side-by-side as columns.</p>")
+      (dict "title" "Keyboard" "content" "<p>Focus a tab and use <kbd>ArrowLeft</kbd>/<kbd>ArrowRight</kbd> to navigate.</p>")
+    )
+  ) }}
+{{- else if eq $variant "input" -}}
+  <div class="panel panel--input">
+    <div class="panel__header">
+      {{- with $number }}<span class="panel__number">[{{ . }}]</span><span class="panel__separator"></span>{{ end -}}
+      <span class="panel__title">{{ $title }}</span>
+    </div>
+    {{- with $note }}<div class="panel__note">({{ . }})</div>{{ end }}
+    <div class="panel__content">
+      <textarea placeholder="type here…" spellcheck="false">#!/bin/bash
+echo "Textareas auto-grow as you type."</textarea>
+    </div>
+  </div>
+{{- else -}}
+  {{ partial "panel.html" (dict
+    "title"    $title
+    "number"   (int $number)
+    "variant"  $variant
+    "note"     $note
+    "content"  $content
+  ) }}
+{{- end -}}

@@ -1,0 +1,33 @@
+// _model-viewer.scss — 3D viewer canvas inside a preview panel.
+
+@use "tokens" as *;
+
+.tui-model-viewer {
+  display: block;
+  width: 100%;
+  background: var(--base00);
+  border-radius: $panel-border-radius;
+  overflow: hidden;
+  position: relative;
+
+  canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    outline: none;
+    touch-action: none;
+  }
+
+  &::before {
+    content: 'loading…';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--base03);
+    font-size: 0.9rem;
+    pointer-events: none;
+  }
+  &:has(canvas)::before { display: none; }
+}

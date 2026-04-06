@@ -1,0 +1,28 @@
+{{/*
+  nav.html — site navigation. Title tab on the left (with optional icon),
+  main menu items on the right. Chevron-clipped pill shape.
+*/}}
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="site-nav__inner">
+    <a href="{{ site.Home.RelPermalink }}" class="site-nav__title{{ if eq .RelPermalink "/" }} is-active{{ end }}">
+      {{- with site.Params.titleIcon -}}
+        {{ partial "icon.html" (dict "name" . "class" "site-nav__icon") }}
+      {{- end -}}
+      <span class="site-nav__title-text">{{ site.Title }}</span>
+    </a>
+    <ul class="site-nav__menu">
+      {{- range site.Menus.main -}}
+        {{- $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) -}}
+        {{- if and (ne .URL "/") (hasPrefix $.RelPermalink .URL) }}{{ $active = true }}{{ end -}}
+        <li class="site-nav__item">
+          <a href="{{ .URL }}" class="site-nav__link{{ if $active }} is-active{{ end }}">
+            {{- with .Params.icon -}}
+              {{ partial "icon.html" (dict "name" . "class" "site-nav__icon") }}
+            {{- end -}}
+            <span class="site-nav__link-text">{{ .Name }}</span>
+          </a>
+        </li>
+      {{- end -}}
+    </ul>
+  </div>
+</nav>

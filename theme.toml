@@ -1,0 +1,12 @@
+name = "tui"
+license = "MIT"
+licenselink = "https://github.com/joshroyelliott/hugo-theme-tui/blob/main/LICENSE"
+description = "A base16-themed Hugo theme with TUI panels, master-detail list/preview pages, Chroma syntax highlighting tied to the palette, and Nerd Font icons."
+homepage = "https://github.com/joshroyelliott/hugo-theme-tui"
+tags = ["responsive", "minimal", "terminal", "tui", "panel", "base16"]
+features = ["responsive", "panels", "scss", "base16", "nerdfont"]
+min_version = "0.128.0"
+
+[author]
+  name = "Josh Elliott"
+  homepage = "https://github.com/joshroyelliott"

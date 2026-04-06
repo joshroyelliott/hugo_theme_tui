@@ -1,0 +1,38 @@
+{{/*
+  render-image.html — responsive images. Uses Hugo image processing for local
+  resources (srcset with 2x, width/height to avoid CLS). External URLs pass
+  through unchanged.
+*/}}
+{{- $src := .Destination -}}
+{{- $alt := .PlainText | default "" -}}
+{{- $caption := .Title -}}
+{{- $isExternal := or (strings.HasPrefix $src "http://") (strings.HasPrefix $src "https://") (strings.HasPrefix $src "//") -}}
+{{- if $isExternal -}}
+  <img src="{{ $src | safeURL }}" alt="{{ $alt }}" loading="lazy" decoding="async"{{ with $caption }} title="{{ . }}"{{ end }}>
+{{- else -}}
+  {{- $img := .Page.Resources.GetMatch $src -}}
+  {{- if not $img -}}{{- $img = resources.Get $src -}}{{- end -}}
+  {{- if $img -}}
+    {{- $w := $img.Width -}}
+    {{- $widths := slice 480 768 1200 -}}
+    {{- $srcset := slice -}}
+    {{- range $widths -}}
+      {{- if lt . $w -}}
+        {{- $s := $img.Resize (printf "%dx" .) -}}
+        {{- $srcset = $srcset | append (printf "%s %dw" $s.RelPermalink .) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink $w) -}}
+    <img src="{{ $img.RelPermalink }}"
+         alt="{{ $alt }}"
+         srcset="{{ delimit $srcset ", " }}"
+         sizes="(max-width: 768px) 100vw, 800px"
+         width="{{ $img.Width }}"
+         height="{{ $img.Height }}"
+         loading="lazy"
+         decoding="async"
+         {{ with $caption }}title="{{ . }}"{{ end }}>
+  {{- else -}}
+    <img src="{{ $src | safeURL }}" alt="{{ $alt }}" loading="lazy" decoding="async"{{ with $caption }} title="{{ . }}"{{ end }}>
+  {{- end -}}
+{{- end -}}

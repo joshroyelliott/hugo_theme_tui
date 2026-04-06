@@ -1,0 +1,25 @@
+{{/*
+  next-prev.html — previous/next in section navigation.
+*/}}
+{{- $prev := .PrevInSection -}}
+{{- $next := .NextInSection -}}
+{{- if or $prev $next -}}
+<nav class="next-prev" aria-label="Post navigation">
+  <div class="next-prev__prev">
+    {{- with $prev -}}
+      <a href="{{ .RelPermalink }}" rel="prev">
+        {{ partial "icon.html" "arrow-left" }}
+        <span>{{ .Title }}</span>
+      </a>
+    {{- end -}}
+  </div>
+  <div class="next-prev__next">
+    {{- with $next -}}
+      <a href="{{ .RelPermalink }}" rel="next">
+        <span>{{ .Title }}</span>
+        {{ partial "icon.html" "arrow-right" }}
+      </a>
+    {{- end -}}
+  </div>
+</nav>
+{{- end -}}

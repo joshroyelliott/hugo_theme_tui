@@ -1,0 +1,28 @@
+{{ define "main" }}
+  {{- $meta := partial "post-meta.html" . -}}
+  {{- $crumbs := partial "breadcrumbs.html" . -}}
+  {{- $toc := "" -}}
+  {{- with .TableOfContents -}}
+    {{- if gt (len (findRE "<h[2-4]" $.Content)) 1 -}}
+      {{- $toc = printf `<aside class="toc" aria-label="Table of contents"><div class="toc__title">Contents</div>%s</aside>` . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $body := printf `%s<div class="single__meta">%s</div>%s<div class="single__body">%s</div>`
+    ($crumbs | string)
+    ($meta | string)
+    $toc
+    (.Content | string) -}}
+  {{- $note := "" -}}
+  {{- with .ReadingTime }}{{ $note = printf "%d min" . }}{{ end -}}
+
+  {{ partial "panel.html" (dict
+    "title" .Title
+    "note" $note
+    "variant" "preview"
+    "classes" "single content-responsive"
+    "scroll" true
+    "content" $body
+  ) }}
+
+  {{ partial "next-prev.html" . }}
+{{ end }}

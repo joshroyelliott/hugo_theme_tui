@@ -1,0 +1,22 @@
+{{ define "main" }}
+  {{- $pages := .Pages -}}
+  {{- $count := len $pages -}}
+  <div class="grid-list-preview content-responsive">
+    {{ partial "panel.html" (dict
+      "title" .Title
+      "number" 1
+      "variant" "list"
+      "count" (printf "1 of %d" $count)
+      "items" $pages
+      "listKind" "preview"
+      "id" "list-panel"
+    ) }}
+    {{ partial "panel.html" (dict
+      "title" "Preview"
+      "number" 2
+      "variant" "preview"
+      "id" "preview-panel"
+      "content" "<div class=\"js-preview-placeholder\"><p>Select an item on the left.</p></div>"
+    ) }}
+  </div>
+{{ end }}

@@ -1,0 +1,19 @@
+pagination_label:
+  other: Pagination
+pagination_prev:
+  other: Previous
+pagination_next:
+  other: Next
+read_more:
+  other: Read more
+reading_time:
+  one: "{{ .Count }} min read"
+  other: "{{ .Count }} min read"
+posts_in:
+  other: "Posts in"
+no_posts:
+  other: "No posts yet."
+back_home:
+  other: "Back to home"
+table_of_contents:
+  other: "Contents"

@@ -1,0 +1,86 @@
+{{/*
+  panel.html — single parametric panel.
+
+  Dict fields:
+    title       string           required-ish, panel title
+    number      int              optional, shown as "[N]" before title
+    note        string           optional, floats top-right
+    count       string           optional, floats bottom-right (list counter)
+    variant     string           "" | "list" | "tab" | "preview" | "input"
+    scroll      bool             add scroll indicator
+    classes     string           extra classes
+    id          string           DOM id
+    content     HTML-safe string used when no items/tabs (variant "" | preview | input)
+    items       Pages            required for variant="list"
+    tabs        []{title,content} required for variant="tab"
+    checkWidth  bool             variant=tab: responsive column mode
+    listKind    string           "links" (default) | "preview" — controls list item JS hook
+*/}}
+{{- $variant := default "" .variant -}}
+{{- $classes := slice "panel" -}}
+{{- with $variant -}}{{- $classes = $classes | append (printf "panel--%s" .) -}}{{- end -}}
+{{- if .scroll -}}{{- $classes = $classes | append "panel--scroll" -}}{{- end -}}
+{{- if and (eq $variant "tab") .checkWidth -}}{{- $classes = $classes | append "js-check-width" -}}{{- end -}}
+{{- with .classes -}}{{- $classes = $classes | append . -}}{{- end -}}
+<div class="{{ delimit $classes " " }}"{{ with .id }} id="{{ . }}"{{ end }}
+  {{- with .count }} data-count="{{ . }}"{{ end -}}
+  {{- if or (eq $variant "list") (eq $variant "preview") }} tabindex="0" role="region"{{ end }}>
+
+  <div class="panel__header">
+    {{- with .number -}}
+      <span class="panel__number">[{{ . }}]</span>
+      <span class="panel__separator"></span>
+    {{- end -}}
+    {{- with .title -}}
+      <span class="panel__title">{{ . }}</span>
+    {{- end -}}
+    {{- if eq $variant "tab" -}}
+      {{- with .tabs -}}
+        <span class="panel__separator"></span>
+        <div class="panel__tabs">
+          {{- range $i, $tab := . -}}
+            {{- if ne $i 0 }}<span class="panel__tab-separator">-</span>{{ end -}}
+            <span class="panel__tab{{ if eq $i 0 }} panel__tab--active{{ end }}"
+                  data-tab-id="{{ printf "tab-%d" $i }}"
+                  data-tab-num="{{ add $i 1 }}"
+                  data-tab-title="{{ $tab.title }}">{{ $tab.title }}</span>
+          {{- end -}}
+        </div>
+      {{- end -}}
+    {{- end -}}
+  </div>
+
+  {{- with .note }}<div class="panel__note">({{ . }})</div>{{ end }}
+
+  {{- if eq $variant "list" -}}
+    <div class="panel__content">
+      <ul class="panel__list">
+        {{- $kind := default "links" .listKind -}}
+        {{- range .items -}}
+          <li class="panel__list-item" data-url="{{ .RelPermalink }}">
+            <a href="{{ .RelPermalink }}"
+               class="panel__list-link{{ if eq $kind "preview" }} js-preview-link{{ end }}"
+               data-url="{{ .RelPermalink }}">
+              <span class="panel__list-title">{{ .Title }}</span>
+              {{- with .Date }}<span class="panel__list-meta"><time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2006-01-02" }}</time></span>{{ end -}}
+            </a>
+          </li>
+        {{- end -}}
+      </ul>
+    </div>
+  {{- else if eq $variant "tab" -}}
+    <div class="panel__tab-contents">
+      {{- range $i, $tab := .tabs -}}
+        <div id="{{ printf "tab-%d" $i }}" class="panel__tab-content{{ if eq $i 0 }} panel__tab-content--active{{ end }}" data-tab-title="{{ $tab.title }}">
+          {{ $tab.content | safeHTML }}
+        </div>
+      {{- end -}}
+    </div>
+  {{- else -}}
+    <div class="panel__content{{ if eq $variant "preview" }} js-preview-content{{ end }}">
+      {{- with .content -}}{{ . | safeHTML }}{{- end -}}
+    </div>
+  {{- end -}}
+
+  {{- if or .scroll (eq $variant "list") (eq $variant "preview") }}<div class="js-scroll-indicator" aria-hidden="true"></div>{{ end }}
+</div>

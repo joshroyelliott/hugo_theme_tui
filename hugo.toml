@@ -1,0 +1,45 @@
+# Theme-shipped defaults. Sites can override any of these in their own hugo.toml.
+#
+# IMPORTANT: Hugo's default merge strategy for the [markup] section is "none",
+# meaning site config fully overrides theme config. To inherit these defaults,
+# sites must opt in by adding the following to their own hugo.toml:
+#
+#   [markup]
+#     _merge = "deep"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
+  [markup.highlight]
+    noClasses = false
+    lineNos = false
+    codeFences = true
+    guessSyntax = true
+    tabWidth = 2
+
+# Custom output format that emits a JSON summary index per section.
+# list-preview.js fetches <section>/index.json and uses it to swap previews.
+[outputFormats]
+  [outputFormats.previewindex]
+    mediaType = "application/json"
+    baseName = "index"
+    isPlainText = true
+    notAlternative = true
+
+# Sites must include `previewindex` in their own [outputs] config to enable the
+# list/preview JSON index, e.g.:
+#
+#   [outputs]
+#     section = ["html", "rss", "previewindex"]
+#     term    = ["html", "rss", "previewindex"]
+#
+# Hugo does not merge a theme's [outputs] block into site config, but the
+# output format itself (declared above) is registered from the theme.
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"

@@ -1,0 +1,21 @@
+// _mermaid.scss — styles for the diagram container created by the
+// render-codeblock-mermaid.html hook. Mermaid's own SVG output is themed via
+// themeVariables in scripts-end.html; this file just handles the wrapper.
+
+@use "tokens" as *;
+
+pre.mermaid {
+  background: var(--base01);
+  border: 1px solid var(--base02);
+  border-radius: $panel-border-radius;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+  text-align: center;
+  color: var(--base05);
+
+  // Hide the raw diagram source before mermaid processes it.
+  &:not([data-processed="true"]) { min-height: 2rem; }
+
+  svg { max-width: 100%; height: auto; }
+}

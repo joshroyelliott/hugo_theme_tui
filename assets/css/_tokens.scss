@@ -1,0 +1,30 @@
+// _tokens.scss — SCSS-only tokens (numbers for calculations, paths, breakpoints).
+// Colours live in CSS custom properties (--base00..0F), injected inline in <head>
+// from data/colorscheme.yaml. They are NOT redeclared here.
+
+// Font
+$font-mono: "FiraCode Nerd Font", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+$font-size-base: 15px;
+$line-height: 1.6;
+
+// Nerd Font served from static/fonts/
+$nerd-font-path: "/fonts/FiraCodeNerdFont/";
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
+// Layout
+$container-max-width: 1500px;
+$panel-border-width: 2px;
+$panel-border-radius: 6px;
+$nav-height: 1.8rem;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

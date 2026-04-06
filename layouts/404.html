@@ -1,0 +1,9 @@
+{{ define "main" }}
+{{ partial "panel.html" (dict
+  "title" "404"
+  "number" 4
+  "note" "not found"
+  "variant" "preview"
+  "content" (printf `<h1>Page not found</h1><p>The page you requested isn't here — it may have moved, or never existed at all.</p><p><a href="%s">← Back to home</a></p>` site.Home.RelPermalink)
+) }}
+{{ end }}

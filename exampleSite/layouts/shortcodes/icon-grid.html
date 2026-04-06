@@ -1,0 +1,13 @@
+{{/*
+  icon-grid.html — renders every entry in the site's data/icons.yaml as a
+  small cell with the glyph + name. Reaches through partials/icon.html so
+  the codepoint lookup stays centralised.
+*/}}
+<div class="icon-grid">
+  {{- range $name, $code := site.Data.icons -}}
+    <div class="icon-grid__cell" title="{{ $name }}: U+{{ upper $code }}">
+      {{ partial "icon.html" $name }}
+      <code>{{ $name }}</code>
+    </div>
+  {{- end -}}
+</div>

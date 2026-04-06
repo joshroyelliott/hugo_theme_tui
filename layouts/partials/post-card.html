@@ -1,0 +1,11 @@
+{{/*
+  post-card.html — compact card for grid listings. Pass a page as context.
+*/}}
+<article class="post-card">
+  <h3 class="post-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <div class="post-card__meta">
+    {{- with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end -}}
+    {{- with .Params.tags }} &middot; {{ delimit . ", " }}{{ end -}}
+  </div>
+  {{- with .Summary }}<p class="post-card__summary">{{ . | plainify | truncate 140 }}</p>{{ end -}}
+</article>

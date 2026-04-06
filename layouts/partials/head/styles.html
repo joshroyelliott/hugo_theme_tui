@@ -1,0 +1,6 @@
+{{/*
+  styles.html - Build main.scss and link it.
+*/}}
+{{- $opts := dict "transpiler" "dartsass" "outputStyle" "compressed" "enableSourceMap" hugo.IsDevelopment -}}
+{{- $style := resources.Get "css/main.scss" | toCSS $opts | fingerprint -}}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">

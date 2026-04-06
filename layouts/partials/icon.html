@@ -1,0 +1,30 @@
+{{/*
+  icon.html — look up a Nerd Font glyph by name from data/icons.yaml.
+
+  Call with a dict OR a bare name string:
+    {{ partial "icon.html" "github" }}
+    {{ partial "icon.html" (dict "name" "github" "class" "icon--lg") }}
+
+  Fields:
+    name   — required. Key in icons.yaml, or a literal hex codepoint.
+    size   — optional: xs | sm | md | lg | xl
+    class  — optional: extra classes appended
+*/}}
+{{- $name := "" -}}
+{{- $size := "" -}}
+{{- $class := "" -}}
+{{- if reflect.IsMap . -}}
+  {{- $name = .name -}}
+  {{- $size = default "" .size -}}
+  {{- $class = default "" .class -}}
+{{- else -}}
+  {{- $name = . -}}
+{{- end -}}
+{{- $icons := index site.Data "icons" -}}
+{{- $code := "" -}}
+{{- with $icons -}}{{- $code = index . $name -}}{{- end -}}
+{{- if not $code -}}{{- $code = $name -}}{{- end -}}
+{{- $classes := slice "icon" -}}
+{{- with $size -}}{{- $classes = $classes | append (printf "icon--%s" .) -}}{{- end -}}
+{{- with $class -}}{{- $classes = $classes | append . -}}{{- end -}}
+<span class="{{ delimit $classes " " }}" aria-hidden="true" data-icon="{{ $name }}">&#x{{ $code }};</span>

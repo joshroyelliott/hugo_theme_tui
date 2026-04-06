@@ -1,0 +1,16 @@
+{{- $pages := .Pages -}}
+[
+{{- range $i, $p := $pages -}}
+{{- if $i }},{{ end }}
+{
+  "title":       {{ $p.Title | jsonify }},
+  "url":         {{ $p.RelPermalink | jsonify }},
+  "permalink":   {{ $p.Permalink | jsonify }},
+  "date":        {{ (default (time.AsTime "0001-01-01T00:00:00Z") $p.Date).Format "2006-01-02" | jsonify }},
+  "tags":        {{ $p.Params.tags | default slice | jsonify }},
+  "summary":     {{ $p.Summary | plainify | jsonify }},
+  "readingTime": {{ $p.ReadingTime | jsonify }},
+  "content":     {{ $p.Content | jsonify }}
+}
+{{- end }}
+]

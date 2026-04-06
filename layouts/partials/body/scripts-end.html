@@ -1,0 +1,51 @@
+{{/*
+  scripts-end.html — deferred JS at the end of <body>.
+
+  main.js is built by js.Build as an ESM bundle. It code-splits dynamic
+  imports for list-preview and model-viewer, so those only load on pages
+  that need them.
+
+  Mermaid is loaded from CDN only on pages whose content contains a
+  ```mermaid code fence (render-codeblock-mermaid.html sets the page store
+  flag).
+*/}}
+{{- $threeVersion := "0.160.0" -}}
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@{{ $threeVersion }}/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@{{ $threeVersion }}/examples/jsm/"
+  }
+}
+</script>
+{{- $externals := slice "three" "three/addons/loaders/GLTFLoader.js" "three/addons/controls/OrbitControls.js" -}}
+{{- $opts := dict "format" "esm" "minify" (not hugo.IsDevelopment) "targetPath" "js/main.js" "externals" $externals -}}
+{{- $js := resources.Get "js/main.js" | js.Build $opts | fingerprint -}}
+<script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous" defer></script>
+
+{{- if .Store.Get "hasMermaid" }}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  const styles = getComputedStyle(document.documentElement);
+  const c = (n) => styles.getPropertyValue(n).trim();
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: 'strict',
+    theme: 'base',
+    themeVariables: {
+      darkMode: true,
+      background: c('--base00'),
+      primaryColor: c('--base01'),
+      primaryTextColor: c('--base05'),
+      primaryBorderColor: c('--base04'),
+      secondaryColor: c('--base02'),
+      tertiaryColor: c('--base02'),
+      lineColor: c('--base05'),
+      textColor: c('--base05'),
+      mainBkg: c('--base01'),
+      errorBkgColor: c('--base08'),
+      errorTextColor: c('--base00'),
+    },
+  });
+</script>
+{{- end }}

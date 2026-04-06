@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=42421&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>:root{--base00:#1F1F28;--base01:#16161D;--base02:#223249;--base03:#54546D;--base04:#727169;--base05:#DCD7BA;--base06:#C8C093;--base07:#717C7C;--base08:#C34043;--base09:#FFA066;--base0A:#C0A36E;--base0B:#76946A;--base0C:#6A9589;--base0D:#7E9CD8;--base0E:#957FB8;--base0F:#D27E99;--tui-colorscheme-name:Kanagawa;
+}</style>
+
+  <title>Theme · tui theme demo</title>
+<meta name="description" content="Palette and typography flow from a single data file.">
+
+<link rel="canonical" href="http://localhost:42421/blog/theme/">
+<link rel="icon" href="/favicon.ico">
+
+
+<meta property="og:title" content="Theme · tui theme demo">
+<meta property="og:description" content="Palette and typography flow from a single data file.">
+<meta property="og:url" content="http://localhost:42421/blog/theme/">
+<meta property="og:site_name" content="tui theme demo">
+<meta property="og:type" content="article">
+
+
+  <meta property="article:published_time" content="2025-01-05T00:00:00Z">
+  <meta property="article:modified_time" content="2025-01-05T00:00:00Z">
+  <meta property="article:tag" content="palette"><meta property="article:tag" content="typography">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Theme · tui theme demo">
+<meta name="twitter:description" content="Palette and typography flow from a single data file.">
+
+
+
+
+
+
+  <link rel="stylesheet" href="/css/main.3d2c6f9829c45cd9861be08f5da5d6b2cdf01ae5da459c7b0e8634309020c863.css" integrity="sha256-PSxvmCnEXNmGG&#43;CPXaXWss3wGuXaRZx7DoY0MJAgyGM=" crossorigin="anonymous">
+
+  
+</head>
+<body>
+  <div class="container">
+    
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="site-nav__inner">
+    <a href="/" class="site-nav__title"><span class="icon site-nav__icon" aria-hidden="true" data-icon="terminal">&#xf120;</span>
+<span class="site-nav__title-text">tui theme demo</span>
+    </a>
+    <ul class="site-nav__menu"><li class="site-nav__item">
+          <a href="/" class="site-nav__link"><span class="icon site-nav__icon" aria-hidden="true" data-icon="home">&#xf015;</span>
+<span class="site-nav__link-text">Home</span>
+          </a>
+        </li><li class="site-nav__item">
+          <a href="/blog/" class="site-nav__link is-active"><span class="icon site-nav__icon" aria-hidden="true" data-icon="document">&#xf15c;</span>
+<span class="site-nav__link-text">Blog</span>
+          </a>
+        </li><li class="site-nav__item">
+          <a href="/about/" class="site-nav__link"><span class="icon site-nav__icon" aria-hidden="true" data-icon="user">&#xf007;</span>
+<span class="site-nav__link-text">About</span>
+          </a>
+        </li></ul>
+  </div>
+</nav>
+
+    <main><div class="panel panel--preview panel--scroll single content-responsive" tabindex="0" role="region">
+
+  <div class="panel__header"><span class="panel__title">Theme</span></div><div class="panel__note">(1 min)</div><div class="panel__content js-preview-content"><nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li><li><a href="/blog/">Blog</a></li><li aria-current="page">Theme</li></ol>
+</nav>
+<div class="single__meta">
+<div class="post-meta">
+    <span class="post-meta__item">
+      <span class="icon" aria-hidden="true" data-icon="calendar">&#xf133;</span>
+
+      <time datetime="2025-01-05">Jan 5, 2025</time>
+    </span>
+    <span class="post-meta__item">
+      <span class="icon" aria-hidden="true" data-icon="clock">&#xf017;</span>
+
+      1 min read
+    </span>
+    <span class="post-meta__item">
+      <span class="tag-list"><span class="icon" aria-hidden="true" data-icon="tag">&#xf02b;</span>
+<a href="/tags/palette/" class="tag-list__tag">palette</a><span class="tag-list__sep">,</span><a href="/tags/typography/" class="tag-list__tag">typography</a></span>
+    </span>
+</div>
+</div><aside class="toc" aria-label="Table of contents"><div class="toc__title">Contents</div><nav id="TableOfContents">
+  <ul>
+    <li><a href="#preview-a-different-palette">Preview a different palette</a></li>
+    <li><a href="#current-palette">Current palette</a></li>
+    <li><a href="#typography">Typography</a></li>
+  </ul>
+</nav></aside><div class="single__body"><p>Every colour on this site comes from the sixteen CSS custom properties
+emitted by <code>data/colorscheme.yaml</code>. Swap the YAML, rebuild, done.</p>
+<h2 id="preview-a-different-palette">Preview a different palette</h2>
+<p>Pick a scheme and watch the whole page re-tint in place. Reload to
+restore the built-in palette.</p>
+
+<div class="theme-selector">
+  <label class="theme-selector__label" for="theme-selector">preview palette:</label>
+  <select id="theme-selector" class="theme-selector__input">
+    <option value="">Kanagawa (current)</option>
+    <option value="tokyo-night-storm">Tokyo Night Storm</option>
+    <option value="gruvbox-dark">Gruvbox Dark</option>
+    <option value="nord">Nord</option>
+    <option value="catppuccin-mocha">Catppuccin Mocha</option>
+    <option value="solarized-dark">Solarized Dark</option>
+    <option value="github-light">GitHub Light</option>
+  </select>
+</div>
+<script type="module">
+const schemes = {
+  '': {
+    base00:'1F1F28',base01:'16161D',base02:'223249',base03:'54546D',
+    base04:'727169',base05:'DCD7BA',base06:'C8C093',base07:'717C7C',
+    base08:'C34043',base09:'FFA066',base0A:'C0A36E',base0B:'76946A',
+    base0C:'6A9589',base0D:'7E9CD8',base0E:'957FB8',base0F:'D27E99',
+  },
+  'tokyo-night-storm': {
+    base00:'24283b',base01:'1f2335',base02:'292e42',base03:'565f89',
+    base04:'545c7e',base05:'a9b1d6',base06:'c0caf5',base07:'394b70',
+    base08:'f7768e',base09:'ff9e64',base0A:'e0af68',base0B:'9ece6a',
+    base0C:'89ddff',base0D:'7aa2f7',base0E:'bb9af7',base0F:'c0caf5',
+  },
+  'gruvbox-dark': {
+    base00:'282828',base01:'3c3836',base02:'504945',base03:'665c54',
+    base04:'bdae93',base05:'d5c4a1',base06:'ebdbb2',base07:'fbf1c7',
+    base08:'fb4934',base09:'fe8019',base0A:'fabd2f',base0B:'b8bb26',
+    base0C:'8ec07c',base0D:'83a598',base0E:'d3869b',base0F:'d65d0e',
+  },
+  'nord': {
+    base00:'2e3440',base01:'3b4252',base02:'434c5e',base03:'4c566a',
+    base04:'d8dee9',base05:'e5e9f0',base06:'eceff4',base07:'8fbcbb',
+    base08:'bf616a',base09:'d08770',base0A:'ebcb8b',base0B:'a3be8c',
+    base0C:'88c0d0',base0D:'81a1c1',base0E:'b48ead',base0F:'5e81ac',
+  },
+  'catppuccin-mocha': {
+    base00:'1e1e2e',base01:'181825',base02:'313244',base03:'45475a',
+    base04:'585b70',base05:'cdd6f4',base06:'f5e0dc',base07:'b4befe',
+    base08:'f38ba8',base09:'fab387',base0A:'f9e2af',base0B:'a6e3a1',
+    base0C:'94e2d5',base0D:'89b4fa',base0E:'cba6f7',base0F:'f2cdcd',
+  },
+  'solarized-dark': {
+    base00:'002b36',base01:'073642',base02:'586e75',base03:'657b83',
+    base04:'839496',base05:'93a1a1',base06:'eee8d5',base07:'fdf6e3',
+    base08:'dc322f',base09:'cb4b16',base0A:'b58900',base0B:'859900',
+    base0C:'2aa198',base0D:'268bd2',base0E:'6c71c4',base0F:'d33682',
+  },
+  'github-light': {
+    base00:'ffffff',base01:'f6f8fa',base02:'d0d7de',base03:'8c959f',
+    base04:'6e7781',base05:'24292f',base06:'1f2328',base07:'0550ae',
+    base08:'cf222e',base09:'fb8500',base0A:'9a6700',base0B:'116329',
+    base0C:'1f6feb',base0D:'0969da',base0E:'8250df',base0F:'a40e26',
+  },
+};
+const sel = document.getElementById('theme-selector');
+sel.addEventListener('change', () => {
+  const scheme = schemes[sel.value];
+  if (!scheme) return;
+  const root = document.documentElement;
+  for (const [k, v] of Object.entries(scheme)) {
+    root.style.setProperty(`--${k}`, `#${v}`);
+  }
+});
+</script>
+
+<h2 id="current-palette">Current palette</h2>
+
+<div class="palette"><div class="palette__swatch" data-slot="base00" style="background-color: var(--base00);">
+      <span class="palette__label">base00</span>
+    </div><div class="palette__swatch" data-slot="base01" style="background-color: var(--base01);">
+      <span class="palette__label">base01</span>
+    </div><div class="palette__swatch" data-slot="base02" style="background-color: var(--base02);">
+      <span class="palette__label">base02</span>
+    </div><div class="palette__swatch" data-slot="base03" style="background-color: var(--base03);">
+      <span class="palette__label">base03</span>
+    </div><div class="palette__swatch" data-slot="base04" style="background-color: var(--base04);">
+      <span class="palette__label">base04</span>
+    </div><div class="palette__swatch" data-slot="base05" style="background-color: var(--base05);">
+      <span class="palette__label">base05</span>
+    </div><div class="palette__swatch" data-slot="base06" style="background-color: var(--base06);">
+      <span class="palette__label">base06</span>
+    </div><div class="palette__swatch" data-slot="base07" style="background-color: var(--base07);">
+      <span class="palette__label">base07</span>
+    </div><div class="palette__swatch" data-slot="base08" style="background-color: var(--base08);">
+      <span class="palette__label">base08</span>
+    </div><div class="palette__swatch" data-slot="base09" style="background-color: var(--base09);">
+      <span class="palette__label">base09</span>
+    </div><div class="palette__swatch" data-slot="base0A" style="background-color: var(--base0A);">
+      <span class="palette__label">base0A</span>
+    </div><div class="palette__swatch" data-slot="base0B" style="background-color: var(--base0B);">
+      <span class="palette__label">base0B</span>
+    </div><div class="palette__swatch" data-slot="base0C" style="background-color: var(--base0C);">
+      <span class="palette__label">base0C</span>
+    </div><div class="palette__swatch" data-slot="base0D" style="background-color: var(--base0D);">
+      <span class="palette__label">base0D</span>
+    </div><div class="palette__swatch" data-slot="base0E" style="background-color: var(--base0E);">
+      <span class="palette__label">base0E</span>
+    </div><div class="palette__swatch" data-slot="base0F" style="background-color: var(--base0F);">
+      <span class="palette__label">base0F</span>
+    </div></div>
+<script type="module">
+
+document.querySelectorAll('.palette__swatch').forEach((el) => {
+  const slot = el.getAttribute('data-slot');
+  const val = getComputedStyle(document.documentElement)
+    .getPropertyValue(`--${slot}`)
+    .trim();
+  el.title = `${slot}: ${val}`;
+});
+</script>
+
+<p>To ship your own palette, drop a <code>data/colorscheme.yaml</code> in your site
+root:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">My Palette</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">scheme</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">base00</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;1F1F28&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># …</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">base0F</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;D27E99&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>Hex values without a leading <code>#</code> (standard base16 format).</p>
+<h2 id="typography">Typography</h2>
+<dl class="info-list">
+  <dt>Font family</dt><dd>FiraCode Nerd Font, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace</dd>
+  <dt>Base size</dt><dd>15px</dd>
+  <dt>Line height</dt><dd>1.6</dd>
+</dl>
+<p>TTF files ship in <code>static/fonts/</code>, loaded with <code>font-display: swap</code>.
+FiraCode ligatures render in code blocks, and the Nerd Font patches
+provide the <a href="/blog/icons/">icon</a>
+ glyphs used throughout the UI.</p>
+</div></div><div class="js-scroll-indicator" aria-hidden="true"></div>
+</div>
+
+
+  <nav class="next-prev" aria-label="Post navigation">
+  <div class="next-prev__prev"></div>
+  <div class="next-prev__next"><a href="/blog/syntax-highlighting/" rel="next">
+        <span>Syntax Highlighting</span>
+        <span class="icon" aria-hidden="true" data-icon="arrow-right">&#xf061;</span>
+
+      </a></div>
+</nav>
+</main>
+    
+<footer class="site-footer">
+  <div class="site-footer__left">&copy; 2025 tui demo</div>
+  <div class="site-footer__right"><a href="https://github.com/joshroyelliott"
+         target="_blank" rel="noopener noreferrer"><span class="icon" aria-hidden="true" data-icon="github">&#xf09b;</span>
+<span class="site-footer__link-text">GitHub</span>
+      </a><span class="site-footer__sep">|</span><a href="/index.xml"
+         ><span class="icon" aria-hidden="true" data-icon="rss">&#xf09e;</span>
+<span class="site-footer__link-text">RSS</span>
+      </a></div>
+</footer>
+
+  </div>
+  <script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script><script type="module" src="/js/main.5e663e54645ae81de3e3e0a25922161cc09c9e28d81749d7bd4c2227b5ccaa73.js" integrity="sha256-XmY&#43;VGRa6B3j4&#43;CiWSIWHMCcnijYF0nXvUwiJ7XMqnM=" crossorigin="anonymous" defer></script>
+
+</body>
+</html>

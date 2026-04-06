@@ -1,0 +1,19 @@
+{{ define "main" }}
+  {{- $recent := first 5 (where site.RegularPages "Section" "blog") -}}
+  <div class="home-grid">
+    {{ partial "panel.html" (dict
+      "title" .Title
+      "number" 1
+      "content" .Content
+    ) }}
+
+    {{ partial "panel.html" (dict
+      "title" "Recent posts"
+      "number" 2
+      "variant" "list"
+      "items" $recent
+      "listKind" "links"
+      "count" (printf "%d of %d" (len $recent) (len (where site.RegularPages "Section" "blog")))
+    ) }}
+  </div>
+{{ end }}

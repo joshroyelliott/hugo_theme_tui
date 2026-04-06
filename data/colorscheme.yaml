@@ -1,0 +1,21 @@
+# base16 colorscheme. Hex values without leading '#' (standard base16-scheme format).
+# Site can override by creating their own `data/colorscheme.yaml` with the same shape.
+name: Tokyo Night Storm
+author: enkia
+scheme:
+  base00: "1F1F28"  # Default background (darker)
+  base01: "16161D"  # Lighter background (used for status bars, line numbers, folding marks)
+  base02: "223249"  # Selection background
+  base03: "54546D"  # Comments, invisibles, line highlighting
+  base04: "727169"  # Dark foreground (used for status bars)
+  base05: "DCD7BA"  # Default foreground
+  base06: "C8C093"  # Light foreground (not often used)
+  base07: "717C7C"  # Light background (not often used)
+  base08: "C34043"  # Variables, XML tags, markup link text, markup lists, diff deleted
+  base09: "FFA066"  # Integers, boolean, constants, XML attributes, markup link url
+  base0A: "C0A36E"  # Classes, markup bold, search text background
+  base0B: "76946A"  # Strings, inherited class, markup code, diff inserted
+  base0C: "6A9589"  # Support, regular expressions, escape characters, markup quotes
+  base0D: "7E9CD8"  # Functions, methods, attribute IDs, headings
+  base0E: "957FB8"  # Keywords, storage, selector, markup italic, diff changed
+  base0F: "D27E99"  # Deprecated, opening/closing embedded language tags, e.g. <?php ?>

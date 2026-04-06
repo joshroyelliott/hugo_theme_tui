@@ -1,0 +1,10 @@
+{{/*
+  render-codeblock-mermaid.html — Goldmark hook for ```mermaid code fences.
+
+  Emits a plain <pre class="mermaid"> and flips a per-page flag so
+  scripts-end.html knows to load mermaid from CDN on this page only.
+*/}}
+<pre class="mermaid">
+{{- .Inner | safeHTML -}}
+</pre>
+{{- .Page.Store.Set "hasMermaid" true -}}

@@ -1,0 +1,24 @@
+{{/*
+  palette.html — renders a 16-swatch grid showing every --baseXX in the
+  current palette, labelled with its slot name. Re-reads the live value on
+  page load so a theme-selector switch (or a rebuild of data/colorscheme.yaml)
+  updates the labels in place.
+*/}}
+<div class="palette">
+  {{- range $i := seq 0 15 -}}
+    {{- $slot := printf "base%02X" $i -}}
+    <div class="palette__swatch" data-slot="{{ $slot }}" style="background-color: var(--{{ $slot }});">
+      <span class="palette__label">{{ $slot }}</span>
+    </div>
+  {{- end -}}
+</div>
+<script type="module">
+// Reveal the actual hex value as a tooltip on each swatch.
+document.querySelectorAll('.palette__swatch').forEach((el) => {
+  const slot = el.getAttribute('data-slot');
+  const val = getComputedStyle(document.documentElement)
+    .getPropertyValue(`--${slot}`)
+    .trim();
+  el.title = `${slot}: ${val}`;
+});
+</script>

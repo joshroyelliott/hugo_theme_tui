@@ -1,0 +1,36 @@
+{{/*
+  tinted-image.html — render a monochrome image tinted to a base16 palette colour.
+
+  Uses CSS mask-image: the image's opaque pixels become a window through which
+  the background-color (a CSS custom property) shows. No JavaScript, no
+  approximation, instant palette swaps.
+
+  Usage:
+    {{< tinted-image src="/images/logo.svg" color="base0D" >}}
+    {{< tinted-image src="/images/icon.png" color="base08" alt="Error" width="64" height="64" >}}
+
+  Parameters:
+    src     required, path to a monochrome image (SVG, PNG, etc.)
+    color   optional, base16 slot name (default "base0D")
+    alt     optional, alt text for accessibility
+    width   optional, CSS width  (default "auto")
+    height  optional, CSS height (default "auto")
+*/}}
+{{- $src    := .Get "src"    | default "" -}}
+{{- $color  := .Get "color"  | default "base0D" -}}
+{{- $alt    := .Get "alt"    | default "" -}}
+{{- $width  := .Get "width"  | default "auto" -}}
+{{- $height := .Get "height" | default "auto" -}}
+{{- if not $src -}}
+  {{ errorf "tinted-image: src is required" }}
+{{- end -}}
+<div class="tinted-image"
+     role="img"
+     {{ with $alt }}aria-label="{{ . }}"{{ end }}
+     style="
+       background-color: var(--{{ $color }});
+       -webkit-mask-image: url('{{ $src }}');
+       mask-image: url('{{ $src }}');
+       width: {{ $width }};
+       height: {{ $height }};
+     "></div>

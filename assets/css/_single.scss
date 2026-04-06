@@ -1,0 +1,106 @@
+// _single.scss — single page meta, breadcrumbs, TOC, next/prev nav.
+
+@use "tokens" as *;
+
+.single {
+  // panel wraps the article, so these style its inner pieces.
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    align-items: center;
+    color: var(--base04);
+    font-size: 0.9rem;
+    margin: 0 0 1rem;
+  }
+  .post-meta__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .single__meta { margin-bottom: 1rem; }
+  .single__body { margin-top: 1rem; }
+}
+
+.tag-list {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+
+  &__tag {
+    color: var(--base0A);
+    &:hover { color: var(--base09); text-decoration: underline; }
+  }
+  &__sep { color: var(--base03); margin-right: 0.25rem; }
+}
+
+.breadcrumbs {
+  font-size: 0.9rem;
+  color: var(--base03);
+  margin: 0 0 0.5rem;
+  ol { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.25rem; }
+  li + li::before { content: "/"; margin: 0 0.25rem; color: var(--base03); }
+  a { color: var(--base0D); &:hover { color: var(--base0C); } }
+  [aria-current="page"] { color: var(--base05); }
+}
+
+.toc {
+  border: 1px solid var(--base02);
+  border-radius: $panel-border-radius;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  background: var(--base01);
+  font-size: 0.92rem;
+
+  &__title {
+    font-weight: 600;
+    color: var(--base06);
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+  }
+  ul, ol { list-style: none; padding-left: 1rem; margin: 0; }
+  > ul, > ol { padding-left: 0; }
+  li { margin: 0.15rem 0; }
+  a { color: var(--base0D); &:hover { color: var(--base0C); } }
+}
+
+.next-prev {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+
+  > div { flex: 1; min-width: 0; }
+  &__next { text-align: right; }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--base0D);
+    &:hover { color: var(--base0C); text-decoration: none; }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+    &__next { text-align: left; }
+  }
+}
+
+// Post card (used by partials/post-card.html in Phase 7+)
+.post-card {
+  border: 1px solid var(--base02);
+  border-radius: $panel-border-radius;
+  padding: 1rem;
+  background: var(--base01);
+  transition: border-color 0.2s ease;
+  &:hover { border-color: var(--base0B); }
+  &__title { margin: 0 0 0.25rem; font-size: 1.1rem; color: var(--base0B); border-bottom: none; padding-bottom: 0; }
+  &__meta { font-size: 0.85rem; color: var(--base03); margin-bottom: 0.5rem; }
+  &__summary { color: var(--base05); font-size: 0.95rem; margin: 0; }
+}

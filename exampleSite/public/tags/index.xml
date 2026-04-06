@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on tui theme demo</title>
+    <link>http://localhost:42421/tags/</link>
+    <description>Recent content in Tags on tui theme demo</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:42421/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Three.js</title>
+      <link>http://localhost:42421/tags/three.js/</link>
+      <pubDate>Sun, 20 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/three.js/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Webgl</title>
+      <link>http://localhost:42421/tags/webgl/</link>
+      <pubDate>Sun, 20 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/webgl/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Diagrams</title>
+      <link>http://localhost:42421/tags/diagrams/</link>
+      <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/diagrams/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mermaid</title>
+      <link>http://localhost:42421/tags/mermaid/</link>
+      <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/mermaid/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Layout</title>
+      <link>http://localhost:42421/tags/layout/</link>
+      <pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/layout/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Panels</title>
+      <link>http://localhost:42421/tags/panels/</link>
+      <pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/panels/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Grid</title>
+      <link>http://localhost:42421/tags/grid/</link>
+      <pubDate>Wed, 22 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/grid/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nav</title>
+      <link>http://localhost:42421/tags/nav/</link>
+      <pubDate>Sun, 19 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/nav/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Responsive</title>
+      <link>http://localhost:42421/tags/responsive/</link>
+      <pubDate>Sun, 19 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/responsive/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Images</title>
+      <link>http://localhost:42421/tags/images/</link>
+      <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/images/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Palette</title>
+      <link>http://localhost:42421/tags/palette/</link>
+      <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/palette/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Icons</title>
+      <link>http://localhost:42421/tags/icons/</link>
+      <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/icons/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Typography</title>
+      <link>http://localhost:42421/tags/typography/</link>
+      <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/typography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Chroma</title>
+      <link>http://localhost:42421/tags/chroma/</link>
+      <pubDate>Sun, 05 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/chroma/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Code</title>
+      <link>http://localhost:42421/tags/code/</link>
+      <pubDate>Sun, 05 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/tags/code/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

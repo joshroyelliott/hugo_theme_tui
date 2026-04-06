@@ -1,0 +1,17 @@
+{{/*
+  breadcrumbs.html — "Home / Section / Page"-style trail.
+*/}}
+{{- $pg := . -}}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="{{ site.Home.RelPermalink }}">{{ i18n "home" | default "Home" }}</a></li>
+    {{- range .Ancestors.Reverse -}}
+      {{- if not .IsHome -}}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{- end -}}
+    {{- end -}}
+    {{- if not $pg.IsHome -}}
+      <li aria-current="page">{{ $pg.Title }}</li>
+    {{- end -}}
+  </ol>
+</nav>

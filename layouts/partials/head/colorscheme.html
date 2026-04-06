@@ -1,0 +1,20 @@
+{{/*
+  colorscheme.html - Emits a :root { --base00..0F } block inline.
+
+  Reads site.Data.colorscheme (with theme's data/colorscheme.yaml as default;
+  a file at the site's own data/colorscheme.yaml overrides). Hex values are
+  stored WITHOUT a leading '#' (base16-scheme YAML format), so we prefix one
+  here. Called via partialCached - never changes during a build.
+*/}}
+{{- $cs := index site.Data "colorscheme" -}}
+{{- if not $cs -}}
+  {{- errorf "tui theme: data/colorscheme.yaml is missing. Ship one with your site or rely on the theme default." -}}
+{{- end -}}
+{{- $scheme := $cs.scheme -}}
+{{- if not $scheme -}}
+  {{- errorf "tui theme: data/colorscheme.yaml is missing a 'scheme' key with base00..base0F entries." -}}
+{{- end -}}
+<style>:root{
+{{- range $k, $v := $scheme }}--{{ $k }}:#{{ $v }};{{ end -}}
+--tui-colorscheme-name:{{ $cs.name | default "" | safeCSS }};
+}</style>

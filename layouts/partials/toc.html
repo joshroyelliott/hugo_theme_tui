@@ -1,0 +1,9 @@
+{{/*
+  toc.html — page table of contents, only if page has ≥ 2 headings.
+*/}}
+{{- if and .TableOfContents (gt (len (findRE "<h[2-4]" .Content)) 1) -}}
+  <aside class="toc" aria-label="Table of contents">
+    <div class="toc__title">{{ i18n "tableOfContents" | default "Contents" }}</div>
+    {{ .TableOfContents }}
+  </aside>
+{{- end -}}

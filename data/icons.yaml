@@ -1,0 +1,57 @@
+# Nerd Font glyph map. Looked up by name in partials/icon.html.
+# Values are Unicode codepoints (hex, no prefix). Lookup falls back to the
+# name itself if not found, so callers can pass a literal codepoint too.
+# Sites can override by creating their own data/icons.yaml.
+home: f015
+folder: f07b
+file: f15b
+document: f15c
+code: f121
+terminal: f120
+github: f09b
+gitlab: f296
+twitter: f099
+mastodon: f4f6
+linkedin: f08c
+email: f0e0
+calendar: f133
+clock: f017
+tag: f02b
+tags: f02c
+bookmark: f02e
+user: f007
+users: f0c0
+search: f002
+cog: f013
+download: f019
+upload: f093
+info: f129
+warning: f071
+error: f06a
+success: f058
+link: f0c1
+external-link: f08e
+comment: f075
+heart: f004
+star: f005
+bars: f0c9
+chevron-right: f054
+chevron-left: f053
+chevron-up: f077
+chevron-down: f078
+book: f02d
+rss: f09e
+phone: f095
+privacy: f21b
+arrow-right: f061
+arrow-left: f060
+go: e627
+python: e73c
+rust: e7a8
+javascript: e74e
+typescript: e628
+lua: e620
+ruby: e739
+java: e738
+css: e749
+html: e736

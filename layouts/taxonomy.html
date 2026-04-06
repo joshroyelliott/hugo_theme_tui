@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{- $terms := .Data.Terms.ByCount -}}
+{{- $body := newScratch -}}
+{{- $body.Set "html" "<ul class=\"tui-term-cloud\">" -}}
+{{- range $terms -}}
+  {{- $body.Add "html" (printf `<li><a href="%s">%s</a> <span class="tui-term-cloud__count">%d</span></li>` .Page.RelPermalink .Name .Count) -}}
+{{- end -}}
+{{- $body.Add "html" "</ul>" -}}
+{{ partial "panel.html" (dict
+  "title" .Title
+  "number" 1
+  "variant" "preview"
+  "count" (printf "%d terms" (len $terms))
+  "content" ($body.Get "html")
+) }}
+{{ end }}

@@ -1,0 +1,337 @@
+// _panel.scss — TUI panel with title/number sitting on the top border.
+
+@use "tokens" as *;
+
+.panel {
+  position: relative;
+  background: transparent;
+  border: $panel-border-width solid var(--base05);
+  border-radius: $panel-border-radius;
+  transition: border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: auto;
+  max-height: calc(100vh - 9rem);
+  overflow: visible; // header elements protrude onto the border
+  margin: 0;
+
+  @media (max-width: $breakpoint-md) {
+    max-height: none;
+  }
+
+  &__content {
+    padding: 1rem;
+    position: relative;
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+
+    @media (max-width: $breakpoint-md) {
+      max-height: none;
+      overflow-y: visible;
+    }
+
+    > :first-child { margin-top: 0; }
+    > :last-child  { margin-bottom: 0; }
+    p { margin: 0 0 0.75rem; }
+    li { margin: 0.35rem 0; }
+    h1, h2, h3, h4, h5, h6 { margin-top: 1.25rem; margin-bottom: 0.5rem; border-bottom: none; padding-bottom: 0; }
+    // Nested panels/grids from shortcodes need extra top margin so the
+    // protruding title text doesn't crowd whatever sits above.
+    // In preview: direct children. In single: inside .single__body.
+    > .panel,
+    > [class*="grid-"],
+    > .single__body > .panel,
+    > .single__body > [class*="grid-"] { margin-top: 1.5rem; }
+  }
+
+  // Header sits ON the top border
+  &__header {
+    position: absolute;
+    top: -$panel-border-width;
+    left: 1rem;
+    height: $panel-border-width;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    white-space: nowrap;
+    gap: 0;
+    // Every header child paints over the border line.
+    > * { background: var(--base00); }
+  }
+
+  &__number,
+  &__title,
+  &__main-title {
+    color: var(--base05);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    padding: 0 0.15rem;
+    position: relative;
+    top: 1px;
+    transition: color 0.2s ease, font-weight 0.2s ease;
+  }
+  &__title,
+  &__main-title { color: var(--base0B); }
+
+  &__separator {
+    width: 1rem;
+    height: $panel-border-width;
+    // Transparent: the actual CSS border shows through, so the separator
+    // is always the exact same thickness and colour as the border — no
+    // sub-pixel mismatches, no variant overrides needed.
+    background: transparent;
+  }
+
+  &__note {
+    position: absolute;
+    top: -$panel-border-width;
+    right: 1rem;
+    height: $panel-border-width;
+    display: flex;
+    align-items: center;
+    padding: 0 0.25rem;
+    color: var(--base05);
+    font-size: 1rem;
+    line-height: 1;
+    background: var(--base00);
+    white-space: nowrap;
+    z-index: 1;
+  }
+
+  // Bottom-right counter ("3 of 12") rendered from data-count attribute
+  &[data-count]::after {
+    content: attr(data-count);
+    position: absolute;
+    bottom: -$panel-border-width;
+    right: 1rem;
+    height: $panel-border-width;
+    display: flex;
+    align-items: center;
+    background: var(--base00);
+    padding: 0 0.25rem;
+    font-size: 0.9rem;
+    color: var(--base05);
+    z-index: 1;
+  }
+
+  &:hover {
+    border-color: var(--base0B);
+    .panel__number,
+    .panel__title,
+    .panel__main-title { color: var(--base0B); font-weight: 700; }
+  }
+
+  // ─── list variant ────────────────────────────────────────────────────────
+  &--list {
+    .panel__list { list-style: none; padding: 0; margin: 0; }
+    .panel__list-item {
+      padding: 0;
+      margin: 0;
+      border-bottom: 1px solid var(--base02);
+      &:last-child { border-bottom: none; }
+    }
+    .panel__list-link {
+      display: block;
+      padding: 0.5rem 0;
+      color: var(--base05);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.2s ease, background-color 0.2s ease;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -1rem;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background-color: transparent;
+        transition: background-color 0.2s ease;
+      }
+      &:hover {
+        color: var(--base0B);
+        text-decoration: none;
+        &::before { background-color: var(--base0B); }
+      }
+      &--active {
+        color: var(--base06);
+        &::before { background-color: var(--base05); }
+      }
+    }
+    .panel__list-title { font-weight: 400; margin: 0; padding: 0; display: block; }
+    .panel__list-meta  { font-size: 0.85em; color: var(--base03); display: block; margin-top: 0.1rem; }
+  }
+
+  // ─── preview variant ─────────────────────────────────────────────────────
+  &--preview {
+    border-color: var(--base04);
+    // Match header elements to the dimmer border.
+    .panel__number { color: var(--base04); }
+    .panel__note   { color: var(--base04); }
+
+    .panel__content {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    img, svg, pre, code, table, .mermaid { max-width: 100%; box-sizing: border-box; }
+    pre, table { overflow-x: auto; white-space: pre-wrap; word-break: break-word; }
+
+    @media (max-width: $breakpoint-md) {
+      max-height: none;
+      .js-scroll-indicator { display: none; }
+    }
+  }
+
+  // ─── tab variant ─────────────────────────────────────────────────────────
+  &--tab {
+    // Constrain the header so tabs can't run under the note or past the
+    // right border. Header is absolute; give it an explicit right anchor
+    // that reserves ~10rem for the (note) element.
+    .panel__header {
+      right: 10rem;
+    }
+    .panel__tabs {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+      position: relative;
+      top: 1px;
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      white-space: nowrap;
+      // Transparent so the panel border shows through as a continuous line;
+      // individual tab names punch through with their own background.
+      background: transparent;
+      &::-webkit-scrollbar { display: none; }
+    }
+    .panel__tab {
+      color: var(--base05);
+      cursor: pointer;
+      font-weight: 400;
+      padding: 0 0.3rem;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+      background: var(--base00); // punch through border line for readable text
+      &:hover { color: var(--base0C); }
+      &--active { color: var(--base0B); }
+    }
+    // Gaps between tabs show the border line naturally; hide the text dash.
+    .panel__tab-separator { display: none; }
+
+    .panel__tab-content {
+      display: none;
+      padding: 1rem;
+      &--active { display: block; }
+      .tab-generated-heading {
+        font-size: 1.1rem; font-weight: 500; margin-top: 0; margin-bottom: 1rem;
+        color: var(--base0B); border-bottom: none; padding-bottom: 0;
+      }
+    }
+
+    // Responsive: JS toggles panel--wide-enough when width >= tab count × 280px
+    &.panel--wide-enough {
+      .panel__tabs { display: none; }
+      .panel__tab-contents { display: flex; gap: 1rem; }
+      .panel__tab-content {
+        display: block !important;
+        flex: 1;
+        &:not(:last-child) {
+          position: relative;
+          padding-right: 1.5rem;
+          &::after {
+            content: '';
+            position: absolute;
+            top: 1rem; bottom: 1rem; right: 0;
+            width: 1px; background-color: var(--base02);
+          }
+        }
+      }
+    }
+
+    // Very narrow: replace tab text with numbers
+    @media (max-width: $breakpoint-md) {
+      .panel__tabs .panel__tab {
+        font-size: 0;
+        padding: 0 0.15rem;
+        display: inline-block;
+        &::before { content: attr(data-tab-num); font-size: 0.9rem; }
+      }
+    }
+  }
+
+  // ─── input variant ───────────────────────────────────────────────────────
+  &--input {
+    &::before {
+      content: '>';
+      position: absolute;
+      top: 1rem; left: 1rem;
+      color: var(--base05);
+      font-weight: 400;
+      z-index: 1;
+    }
+    .panel__content { padding-left: 2.2rem; }
+
+    input[type="text"],
+    input[type="search"],
+    input[type="password"],
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"],
+    textarea {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--base05);
+      font-family: $font-mono;
+      font-size: 1rem;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      caret-color: var(--base06);
+    }
+    textarea {
+      resize: none;
+      min-height: 1.5rem;
+      line-height: 1.5;
+      overflow: hidden;
+    }
+
+    &.is-active {
+      border-color: var(--base0C);
+      .panel__title { color: var(--base0C); font-weight: 700; }
+    }
+  }
+
+  // ─── scroll indicator (list, preview, panel--scroll) ─────────────────────
+  &--list .js-scroll-indicator,
+  &--preview .js-scroll-indicator,
+  &--scroll .js-scroll-indicator {
+    position: absolute;
+    right: -6px;
+    width: 4px;
+    background-color: var(--base04);
+    border-radius: 2px;
+    transition: top 0.1s ease, height 0.1s ease, background-color 0.2s ease, opacity 0.2s ease;
+    opacity: 0.8;
+    z-index: 5;
+    pointer-events: none;
+  }
+  &--list:hover .js-scroll-indicator,
+  &--preview:hover .js-scroll-indicator,
+  &--scroll:hover .js-scroll-indicator {
+    opacity: 1;
+    background-color: var(--base0B);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    .js-scroll-indicator { right: 0; }
+  }
+}

@@ -1,0 +1,29 @@
+{{/*
+  model-viewer.html — embed a glTF model (or a procedural demo scene) in a
+  TUI panel.
+
+  Usage:
+    {{< model-viewer src="/models/scene.glb" title="Scene" height="420" >}}
+    {{< model-viewer title="Demo" height="360" >}}    (no src → demo scene)
+
+  Parameters:
+    src     optional, URL to a .glb / .gltf file. If omitted, the viewer
+            renders a procedural torus-knot + ring scene that shows off the
+            palette without any external assets.
+    title   optional, panel title (default "Model")
+    height  optional, px height of the viewport (default 400)
+    note    optional, small string floated on the top-right of the border
+*/}}
+{{- $src    := .Get "src"    | default "" -}}
+{{- $title  := .Get "title"  | default "Model" -}}
+{{- $height := .Get "height" | default "400" -}}
+{{- $note   := .Get "note"   | default "" -}}
+<div class="panel panel--preview">
+  <div class="panel__header"><span class="panel__title">{{ $title }}</span></div>
+  {{- with $note }}<div class="panel__note">({{ . }})</div>{{ end }}
+  <div class="panel__content" style="padding:0;">
+    <div class="tui-model-viewer"
+         {{- with $src }} data-src="{{ . }}"{{ end }}
+         style="height:{{ $height }}px;"></div>
+  </div>
+</div>

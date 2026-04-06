@@ -1,0 +1,25 @@
+{{/*
+  footer.html — copyright on the left, social/extra links on the right.
+  Links are configured via site.Params.social (array of {name,url,icon}).
+*/}}
+<footer class="site-footer">
+  <div class="site-footer__left">
+    {{- with site.Params.copyright -}}
+      {{ . | safeHTML }}
+    {{- else -}}
+      &copy; {{ now.Format "2006" }} {{ site.Title }}
+    {{- end -}}
+  </div>
+  <div class="site-footer__right">
+    {{- $links := site.Params.social | default slice -}}
+    {{- $n := len $links -}}
+    {{- range $i, $l := $links -}}
+      <a href="{{ $l.url }}"
+         {{ if not (hasPrefix $l.url "/") }}target="_blank" rel="noopener noreferrer"{{ end }}>
+        {{- with $l.icon -}}{{ partial "icon.html" . }}{{- end -}}
+        <span class="site-footer__link-text">{{ $l.name }}</span>
+      </a>
+      {{- if ne (add $i 1) $n }}<span class="site-footer__sep">|</span>{{ end -}}
+    {{- end -}}
+  </div>
+</footer>

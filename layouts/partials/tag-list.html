@@ -1,0 +1,12 @@
+{{/*
+  tag-list.html — render .Params.tags as a list of links to /tags/<tag>/.
+*/}}
+{{- with .Params.tags -}}
+  <span class="tag-list">
+    {{- partial "icon.html" "tag" -}}
+    {{- range $i, $t := . -}}
+      {{- if $i }}<span class="tag-list__sep">,</span>{{ end -}}
+      <a href="{{ "/tags/" | relURL }}{{ $t | urlize }}/" class="tag-list__tag">{{ $t }}</a>
+    {{- end -}}
+  </span>
+{{- end -}}

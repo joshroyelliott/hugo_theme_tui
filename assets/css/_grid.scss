@@ -1,0 +1,68 @@
+// _grid.scss — responsive panel grid layouts.
+
+@use "tokens" as *;
+
+%grid-base {
+  display: grid;
+  row-gap: $spacing-md;
+  column-gap: $spacing-sm;
+  margin: 0;
+  min-height: 0;
+  align-items: start;
+  > * { height: auto; min-height: 0; }
+}
+
+.grid-2col { @extend %grid-base; grid-template-columns: repeat(2, 1fr);
+  @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; } }
+
+.grid-3col { @extend %grid-base; grid-template-columns: repeat(3, 1fr);
+  @media (max-width: $breakpoint-lg) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; } }
+
+.grid-4col { @extend %grid-base; grid-template-columns: repeat(4, 1fr);
+  @media (max-width: $breakpoint-xl) { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: $breakpoint-lg) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; } }
+
+.grid-main-sidebar { @extend %grid-base; grid-template-columns: 1fr 2fr;
+  @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; } }
+
+.grid-sidebar-main { @extend %grid-base; grid-template-columns: 2fr 1fr;
+  @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; } }
+
+.grid-wide-narrow { @extend %grid-base; grid-template-columns: 2fr 1fr;
+  @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; } }
+
+.grid-narrow-wide { @extend %grid-base; grid-template-columns: 1fr 2fr;
+  @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; } }
+
+.grid-auto-fit { @extend %grid-base; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+.grid-monocle { @extend %grid-base; grid-template-columns: 1fr; }
+
+// List page master-detail: list column + preview column
+.grid-list-preview {
+  @extend %grid-base;
+  grid-template-columns: minmax(300px, 1fr) 2fr;
+  grid-template-rows: minmax(0, 1fr);
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    row-gap: $spacing-md;
+  }
+}
+
+// Home page layout: intro + recent posts side by side, stacks on mobile.
+.home-grid {
+  @extend %grid-base;
+  grid-template-columns: 2fr 1fr;
+  @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
+}
+
+// Master + stacked sidebars
+.grid-master-stack {
+  @extend %grid-base;
+  grid-template-columns: 2fr 1fr;
+  .stack { display: grid; grid-template-columns: 1fr; row-gap: $spacing-md; }
+  @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
+}

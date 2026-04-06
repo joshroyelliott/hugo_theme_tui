@@ -1,0 +1,31 @@
+{{/*
+  pagination.html — numeric pager for paginated list pages.
+
+  Usage: {{ partial "pagination.html" . }}
+*/}}
+{{- $p := .Paginator -}}
+{{- if gt $p.TotalPages 1 -}}
+<nav class="pagination" aria-label="{{ i18n "pagination_label" | default "Pagination" }}">
+  <ul class="pagination__list">
+    {{- if $p.HasPrev }}
+      <li class="pagination__item pagination__item--prev">
+        <a href="{{ $p.Prev.URL }}" rel="prev">← {{ i18n "pagination_prev" | default "Previous" }}</a>
+      </li>
+    {{- end }}
+    {{- range $p.Pagers }}
+      <li class="pagination__item{{ if eq . $p }} pagination__item--current{{ end }}">
+        {{- if eq . $p -}}
+          <span aria-current="page">{{ .PageNumber }}</span>
+        {{- else -}}
+          <a href="{{ .URL }}">{{ .PageNumber }}</a>
+        {{- end -}}
+      </li>
+    {{- end }}
+    {{- if $p.HasNext }}
+      <li class="pagination__item pagination__item--next">
+        <a href="{{ $p.Next.URL }}" rel="next">{{ i18n "pagination_next" | default "Next" }} →</a>
+      </li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end -}}

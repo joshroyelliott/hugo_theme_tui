@@ -1,0 +1,22 @@
+{{/*
+  post-meta.html — date, reading time, tags row. Pass the page as context.
+*/}}
+<div class="post-meta">
+  {{- with .Date }}
+    <span class="post-meta__item">
+      {{ partial "icon.html" "calendar" }}
+      <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>
+    </span>
+  {{- end }}
+  {{- with .ReadingTime }}
+    <span class="post-meta__item">
+      {{ partial "icon.html" "clock" }}
+      {{ . }} min read
+    </span>
+  {{- end }}
+  {{- with .Params.tags }}
+    <span class="post-meta__item">
+      {{ partial "tag-list.html" $ }}
+    </span>
+  {{- end }}
+</div>

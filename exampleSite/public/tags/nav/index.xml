@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nav on tui theme demo</title>
+    <link>http://localhost:42421/tags/nav/</link>
+    <description>Recent content in Nav on tui theme demo</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 19 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:42421/tags/nav/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nav</title>
+      <link>http://localhost:42421/blog/nav/</link>
+      <pubDate>Sun, 19 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/blog/nav/</guid>
+      <description>Chevron-clipped bar with a title tab and link pills.</description>
+    </item>
+    <item>
+      <title>Footer</title>
+      <link>http://localhost:42421/blog/footer/</link>
+      <pubDate>Sun, 12 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:42421/blog/footer/</guid>
+      <description>Copyright left, social links right, icon-only on mobile.</description>
+    </item>
+  </channel>
+</rss>

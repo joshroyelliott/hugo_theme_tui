@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=42421&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>:root{--base00:#1F1F28;--base01:#16161D;--base02:#223249;--base03:#54546D;--base04:#727169;--base05:#DCD7BA;--base06:#C8C093;--base07:#717C7C;--base08:#C34043;--base09:#FFA066;--base0A:#C0A36E;--base0B:#76946A;--base0C:#6A9589;--base0D:#7E9CD8;--base0E:#957FB8;--base0F:#D27E99;--tui-colorscheme-name:Kanagawa;
+}</style>
+
+  <title>Tinted Images · tui theme demo</title>
+<meta name="description" content="Monochrome images tinted to any base16 colour with CSS mask-image.">
+
+<link rel="canonical" href="http://localhost:42421/blog/tinted-images/">
+<link rel="icon" href="/favicon.ico">
+
+
+<meta property="og:title" content="Tinted Images · tui theme demo">
+<meta property="og:description" content="Monochrome images tinted to any base16 colour with CSS mask-image.">
+<meta property="og:url" content="http://localhost:42421/blog/tinted-images/">
+<meta property="og:site_name" content="tui theme demo">
+<meta property="og:type" content="article">
+
+
+  <meta property="article:published_time" content="2025-01-10T00:00:00Z">
+  <meta property="article:modified_time" content="2025-01-10T00:00:00Z">
+  <meta property="article:tag" content="palette"><meta property="article:tag" content="images">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tinted Images · tui theme demo">
+<meta name="twitter:description" content="Monochrome images tinted to any base16 colour with CSS mask-image.">
+
+
+
+
+
+
+  <link rel="stylesheet" href="/css/main.3d2c6f9829c45cd9861be08f5da5d6b2cdf01ae5da459c7b0e8634309020c863.css" integrity="sha256-PSxvmCnEXNmGG&#43;CPXaXWss3wGuXaRZx7DoY0MJAgyGM=" crossorigin="anonymous">
+
+  
+</head>
+<body>
+  <div class="container">
+    
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="site-nav__inner">
+    <a href="/" class="site-nav__title"><span class="icon site-nav__icon" aria-hidden="true" data-icon="terminal">&#xf120;</span>
+<span class="site-nav__title-text">tui theme demo</span>
+    </a>
+    <ul class="site-nav__menu"><li class="site-nav__item">
+          <a href="/" class="site-nav__link"><span class="icon site-nav__icon" aria-hidden="true" data-icon="home">&#xf015;</span>
+<span class="site-nav__link-text">Home</span>
+          </a>
+        </li><li class="site-nav__item">
+          <a href="/blog/" class="site-nav__link is-active"><span class="icon site-nav__icon" aria-hidden="true" data-icon="document">&#xf15c;</span>
+<span class="site-nav__link-text">Blog</span>
+          </a>
+        </li><li class="site-nav__item">
+          <a href="/about/" class="site-nav__link"><span class="icon site-nav__icon" aria-hidden="true" data-icon="user">&#xf007;</span>
+<span class="site-nav__link-text">About</span>
+          </a>
+        </li></ul>
+  </div>
+</nav>
+
+    <main><div class="panel panel--preview panel--scroll single content-responsive" tabindex="0" role="region">
+
+  <div class="panel__header"><span class="panel__title">Tinted Images</span></div><div class="panel__note">(1 min)</div><div class="panel__content js-preview-content"><nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li><li><a href="/blog/">Blog</a></li><li aria-current="page">Tinted Images</li></ol>
+</nav>
+<div class="single__meta">
+<div class="post-meta">
+    <span class="post-meta__item">
+      <span class="icon" aria-hidden="true" data-icon="calendar">&#xf133;</span>
+
+      <time datetime="2025-01-10">Jan 10, 2025</time>
+    </span>
+    <span class="post-meta__item">
+      <span class="icon" aria-hidden="true" data-icon="clock">&#xf017;</span>
+
+      1 min read
+    </span>
+    <span class="post-meta__item">
+      <span class="tag-list"><span class="icon" aria-hidden="true" data-icon="tag">&#xf02b;</span>
+<a href="/tags/palette/" class="tag-list__tag">palette</a><span class="tag-list__sep">,</span><a href="/tags/images/" class="tag-list__tag">images</a></span>
+    </span>
+</div>
+</div><aside class="toc" aria-label="Table of contents"><div class="toc__title">Contents</div><nav id="TableOfContents">
+  <ul>
+    <li><a href="#single-colour">Single colour</a></li>
+    <li><a href="#palette-sampler">Palette sampler</a></li>
+    <li><a href="#different-shapes">Different shapes</a></li>
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#parameters">Parameters</a></li>
+  </ul>
+</nav></aside><div class="single__body"><p>The <code>tinted-image</code> shortcode recolours monochrome images (SVG, PNG) to
+any palette slot using CSS <code>mask-image</code>. No JavaScript, no
+approximation — the colour is an exact CSS custom property.</p>
+<h2 id="single-colour">Single colour</h2>
+<div class="tinted-image"
+     role="img"
+     aria-label="Terminal"
+     style="
+       background-color: var(--base0D);
+       -webkit-mask-image: url('/images/terminal.svg');
+       mask-image: url('/images/terminal.svg');
+       width: 64px;
+       height: 64px;
+     "></div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go-html-template" data-lang="go-html-template"><span class="line"><span class="cl"><span class="cp">{{</span><span class="err">&lt;</span><span class="w"> </span><span class="nx">tinted</span><span class="err">-</span><span class="nx">image</span><span class="w"> </span><span class="nx">src</span><span class="o">=</span><span class="s">&#34;/images/terminal.svg&#34;</span><span class="w"> </span><span class="nx">color</span><span class="o">=</span><span class="s">&#34;base0D&#34;</span><span class="w"> </span><span class="nx">width</span><span class="o">=</span><span class="s">&#34;64px&#34;</span><span class="w"> </span><span class="nx">height</span><span class="o">=</span><span class="s">&#34;64px&#34;</span><span class="w"> </span><span class="err">&gt;</span><span class="cp">}}</span>
+</span></span></code></pre></div><h2 id="palette-sampler">Palette sampler</h2>
+<p>The same image in every accent colour:</p>
+<div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; margin:1rem 0;">
+  <div class="tinted-image"
+       role="img"
+       aria-label="Red"
+       style="
+         background-color: var(--base08);
+         -webkit-mask-image: url('/images/terminal.svg');
+         mask-image: url('/images/terminal.svg');
+         width: 48px;
+         height: 48px;
+       "></div>
+
+  <div class="tinted-image"
+       role="img"
+       aria-label="Orange"
+       style="
+         background-color: var(--base09);
+         -webkit-mask-image: url('/images/terminal.svg');
+         mask-image: url('/images/terminal.svg');
+         width: 48px;
+         height: 48px;
+       "></div>
+
+  <div class="tinted-image"
+       role="img"
+       aria-label="Yellow"
+       style="
+         background-color: var(--base0A);
+         -webkit-mask-image: url('/images/terminal.svg');
+         mask-image: url('/images/terminal.svg');
+         width: 48px;
+         height: 48px;
+       "></div>
+
+  <div class="tinted-image"
+       role="img"
+       aria-label="Green"
+       style="
+         background-color: var(--base0B);
+         -webkit-mask-image: url('/images/terminal.svg');
+         mask-image: url('/images/terminal.svg');
+         width: 48px;
+         height: 48px;
+       "></div>
+
+  <div class="tinted-image"
+       role="img"
+       aria-label="Cyan"
+       style="
+         background-color: var(--base0C);
+         -webkit-mask-image: url('/images/terminal.svg');
+         mask-image: url('/images/terminal.svg');
+         width: 48px;
+         height: 48px;
+       "></div>
+
+  <div class="tinted-image"
+       role="img"
+       aria-label="Blue"
+       style="
+         background-color: var(--base0D);
+         -webkit-mask-image: url('/images/terminal.svg');
+         mask-image: url('/images/terminal.svg');
+         width: 48px;
+         height: 48px;
+       "></div>
+
+  <div class="tinted-image"
+       role="img"
+       aria-label="Purple"
+       style="
+         background-color: var(--base0E);
+         -webkit-mask-image: url('/images/terminal.svg');
+         mask-image: url('/images/terminal.svg');
+         width: 48px;
+         height: 48px;
+       "></div>
+
+  <div class="tinted-image"
+       role="img"
+       aria-label="Brown"
+       style="
+         background-color: var(--base0F);
+         -webkit-mask-image: url('/images/terminal.svg');
+         mask-image: url('/images/terminal.svg');
+         width: 48px;
+         height: 48px;
+       "></div>
+
+</div>
+<h2 id="different-shapes">Different shapes</h2>
+<p>Any monochrome image works — opaque pixels become the tinted colour,
+transparent pixels stay transparent.</p>
+<div style="display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; margin:1rem 0;">
+  <div class="tinted-image"
+       role="img"
+       aria-label="Code"
+       style="
+         background-color: var(--base0B);
+         -webkit-mask-image: url('/images/code.svg');
+         mask-image: url('/images/code.svg');
+         width: 56px;
+         height: 56px;
+       "></div>
+
+  <div class="tinted-image"
+       role="img"
+       aria-label="Gear"
+       style="
+         background-color: var(--base09);
+         -webkit-mask-image: url('/images/gear.svg');
+         mask-image: url('/images/gear.svg');
+         width: 56px;
+         height: 56px;
+       "></div>
+
+  <div class="tinted-image"
+       role="img"
+       aria-label="Globe"
+       style="
+         background-color: var(--base0C);
+         -webkit-mask-image: url('/images/globe.svg');
+         mask-image: url('/images/globe.svg');
+         width: 56px;
+         height: 56px;
+       "></div>
+
+  <div class="tinted-image"
+       role="img"
+       aria-label="Heart"
+       style="
+         background-color: var(--base08);
+         -webkit-mask-image: url('/images/heart.svg');
+         mask-image: url('/images/heart.svg');
+         width: 56px;
+         height: 56px;
+       "></div>
+
+</div>
+<h2 id="how-it-works">How it works</h2>
+<p>The image acts as an alpha mask on a coloured <code>&lt;div&gt;</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">tinted-image</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">background-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">base0D</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">mask-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="s1">&#39;/images/logo.svg&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">mask-size</span><span class="p">:</span> <span class="kc">contain</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">mask-repeat</span><span class="p">:</span> <span class="kc">no-repeat</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Opaque pixels → colour shows. Transparent pixels → nothing renders.
+Swap the palette and every tinted image updates instantly.</p>
+<h2 id="parameters">Parameters</h2>
+<dl class="info-list">
+  <dt><code>src</code></dt><dd>Path to a monochrome image (required)</dd>
+  <dt><code>color</code></dt><dd>Base16 slot name, e.g. <code>base0D</code> (default: <code>base0D</code>)</dd>
+  <dt><code>alt</code></dt><dd>Accessible label</dd>
+  <dt><code>width</code></dt><dd>CSS width (default: <code>auto</code>)</dd>
+  <dt><code>height</code></dt><dd>CSS height (default: <code>auto</code>)</dd>
+</dl>
+<p>Best results with images that are solid white (or any opaque colour) on
+a transparent background. SVGs work perfectly; PNGs need an alpha channel.</p>
+</div></div><div class="js-scroll-indicator" aria-hidden="true"></div>
+</div>
+
+
+  <nav class="next-prev" aria-label="Post navigation">
+  <div class="next-prev__prev"><a href="/blog/icons/" rel="prev">
+        <span class="icon" aria-hidden="true" data-icon="arrow-left">&#xf060;</span>
+
+        <span>Icons</span>
+      </a></div>
+  <div class="next-prev__next"><a href="/blog/footer/" rel="next">
+        <span>Footer</span>
+        <span class="icon" aria-hidden="true" data-icon="arrow-right">&#xf061;</span>
+
+      </a></div>
+</nav>
+</main>
+    
+<footer class="site-footer">
+  <div class="site-footer__left">&copy; 2025 tui demo</div>
+  <div class="site-footer__right"><a href="https://github.com/joshroyelliott"
+         target="_blank" rel="noopener noreferrer"><span class="icon" aria-hidden="true" data-icon="github">&#xf09b;</span>
+<span class="site-footer__link-text">GitHub</span>
+      </a><span class="site-footer__sep">|</span><a href="/index.xml"
+         ><span class="icon" aria-hidden="true" data-icon="rss">&#xf09e;</span>
+<span class="site-footer__link-text">RSS</span>
+      </a></div>
+</footer>
+
+  </div>
+  <script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script><script type="module" src="/js/main.5e663e54645ae81de3e3e0a25922161cc09c9e28d81749d7bd4c2227b5ccaa73.js" integrity="sha256-XmY&#43;VGRa6B3j4&#43;CiWSIWHMCcnijYF0nXvUwiJ7XMqnM=" crossorigin="anonymous" defer></script>
+
+</body>
+</html>

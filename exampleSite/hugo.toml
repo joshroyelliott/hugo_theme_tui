@@ -1,0 +1,53 @@
+baseURL = "https://example.org/"
+title = "tui theme demo"
+languageCode = "en-us"
+theme = "hugo_theme"
+
+# The exampleSite sits inside the theme repo, so --themesDir ../.. points at the
+# parent directory; Hugo then looks for a theme called `hugo_theme`, matching
+# this repo's directory name. In a real site you'd use theme = "tui" and have
+# the theme in themes/tui/.
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+    [menu.main.params]
+      icon = "home"
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 20
+    [menu.main.params]
+      icon = "document"
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 30
+    [menu.main.params]
+      icon = "user"
+
+[outputs]
+  home     = ["html", "rss"]
+  section  = ["html", "rss", "previewindex"]
+  taxonomy = ["html", "rss"]
+  term     = ["html", "rss", "previewindex"]
+
+# Opt into deep merging for markup so theme defaults (Chroma classes, TOC
+# levels, goldmark unsafe) flow through. Hugo's default strategy is "none".
+[markup]
+  _merge = "deep"
+
+[params]
+  description = "Demo site for the tui Hugo theme."
+  titleIcon = "terminal"
+  copyright = "&copy; 2025 tui demo"
+  [[params.social]]
+    name = "GitHub"
+    url = "https://github.com/joshroyelliott"
+    icon = "github"
+  [[params.social]]
+    name = "RSS"
+    url = "/index.xml"
+    icon = "rss"

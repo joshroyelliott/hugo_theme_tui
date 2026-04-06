@@ -1,0 +1,54 @@
+{{/*
+  meta.html — <title>, description, canonical, Open Graph, Twitter Card,
+  favicon, and feed alternates.
+
+  Reads optional site params:
+    params.description      default description used on the home page
+    params.author           default author name
+    params.ogImage          fallback social image (relative or absolute URL)
+    params.twitter          twitter handle without the leading @
+    params.favicon          path to favicon (default /favicon.ico)
+*/}}
+{{- $title := cond .IsHome site.Title (printf "%s · %s" .Title site.Title) -}}
+{{- $desc := or .Description .Summary site.Params.description "" -}}
+{{- $desc = $desc | plainify | strings.TrimSpace -}}
+{{- $author := or .Params.author site.Params.author "" -}}
+{{- $canonical := .Permalink -}}
+{{- $image := or .Params.image site.Params.ogImage "" -}}
+{{- if and $image (not (hasPrefix $image "http")) -}}
+  {{- $image = printf "%s%s" (strings.TrimRight "/" site.BaseURL) (printf "/%s" (strings.TrimLeft "/" $image)) -}}
+{{- end -}}
+{{- $favicon := site.Params.favicon | default "/favicon.ico" -}}
+
+<title>{{ $title }}</title>
+{{ with $desc }}<meta name="description" content="{{ . }}">{{ end }}
+{{ with $author }}<meta name="author" content="{{ . }}">{{ end }}
+<link rel="canonical" href="{{ $canonical }}">
+<link rel="icon" href="{{ $favicon }}">
+
+{{/* Open Graph */}}
+<meta property="og:title" content="{{ $title }}">
+{{ with $desc }}<meta property="og:description" content="{{ . }}">{{ end }}
+<meta property="og:url" content="{{ $canonical }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
+{{ with $image }}<meta property="og:image" content="{{ . }}">{{ end }}
+{{ if .IsPage }}
+  {{ with .PublishDate }}<meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}">{{ end }}
+  {{ with .Lastmod }}<meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}">{{ end }}
+  {{ range .Params.tags }}<meta property="article:tag" content="{{ . }}">{{ end }}
+{{ end }}
+
+{{/* Twitter Card */}}
+<meta name="twitter:card" content="{{ cond (ne $image "") "summary_large_image" "summary" }}">
+<meta name="twitter:title" content="{{ $title }}">
+{{ with $desc }}<meta name="twitter:description" content="{{ . }}">{{ end }}
+{{ with $image }}<meta name="twitter:image" content="{{ . }}">{{ end }}
+{{ with site.Params.twitter }}<meta name="twitter:site" content="@{{ . }}">{{ end }}
+
+{{/* Feed alternates */}}
+{{ range .AlternativeOutputFormats -}}
+  {{ if eq .Name "RSS" -}}
+    <link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
+  {{- end }}
+{{- end }}

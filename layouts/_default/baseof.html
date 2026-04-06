@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ partialCached "head/colorscheme.html" . }}
+  {{ partial "head/meta.html" . }}
+  {{ partial "head/styles.html" . }}
+  {{ block "head" . }}{{ end }}
+</head>
+<body>
+  <div class="container">
+    {{ partial "body/nav.html" . }}
+    <main>{{ block "main" . }}{{ end }}</main>
+    {{ partial "body/footer.html" . }}
+  </div>
+  {{ partial "body/scripts-end.html" . }}
+</body>
+</html>

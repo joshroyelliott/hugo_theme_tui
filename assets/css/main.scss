@@ -1,0 +1,22 @@
+// main.scss — entry point.
+// Uses Sass modern module system (@use / @forward). `tokens` is forwarded from
+// each module that needs its SCSS variables, keeping a single source of truth.
+
+@use "tokens" as *;
+@use "reset";
+@use "base";
+// Phase 2+
+@use "icon";
+@use "panel";
+@use "nav";
+@use "footer";
+// Phase 3
+@use "grid";
+// Phase 4
+@use "chroma";
+@use "single";
+// Phase 6
+@use "mermaid";
+@use "model-viewer";
+// Utilities last
+@use "utilities";

@@ -1,0 +1,29 @@
+// _icon.scss — Nerd Font glyph rendering.
+
+@use "tokens" as *;
+
+.icon {
+  font-family: $font-mono;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  line-height: 1;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &--xs { font-size: 0.75em; }
+  &--sm { font-size: 0.875em; }
+  &--md { font-size: 1em; }
+  &--lg { font-size: 1.25em; }
+  &--xl { font-size: 1.5em; }
+
+  // Semantic colours
+  &--primary { color: var(--base0D); }
+  &--success { color: var(--base0B); }
+  &--warning { color: var(--base0A); }
+  &--danger  { color: var(--base0F); }
+  &--info    { color: var(--base0C); }
+}

@@ -54,7 +54,8 @@
     padding: 0;
   }
 
-  &__item { height: 100%; display: flex; margin: 0; }
+  // Specificity (0,2,0) so .panel__content li (0,1,1) can't bleed in.
+  &__menu > &__item { height: 100%; display: flex; margin: 0; }
 
   &__link {
     color: var(--base00);

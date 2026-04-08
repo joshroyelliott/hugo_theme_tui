@@ -1,13 +1,13 @@
 ---
 title: "Tinted Images"
 date: 2025-01-10
+weight: 8
 tags: ["palette", "images"]
 summary: "Monochrome images tinted to any base16 colour with CSS mask-image."
 ---
 
 The `tinted-image` shortcode recolours monochrome images (SVG, PNG) to
-any palette slot using CSS `mask-image`. No JavaScript, no
-approximation — the colour is an exact CSS custom property.
+any palette slot using CSS `mask-image`.
 
 ## Single colour
 

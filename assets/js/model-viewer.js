@@ -24,8 +24,8 @@ function loadThree() {
   return threePromise;
 }
 
-export async function initModelViewers() {
-  const viewers = document.querySelectorAll('.tui-model-viewer');
+export async function initModelViewers(root) {
+  const viewers = (root || document).querySelectorAll('.tui-model-viewer');
   if (!viewers.length) return;
   const three = await loadThree();
   viewers.forEach((el) => setupViewer(el, three));
@@ -162,7 +162,7 @@ function frameObject(THREE, camera, controls, object) {
   const center = box.getCenter(new THREE.Vector3());
   const maxDim = Math.max(size.x, size.y, size.z) || 1;
   const fov = (camera.fov * Math.PI) / 180;
-  const distance = maxDim / (2 * Math.tan(fov / 2)) * 1.6;
+  const distance = maxDim / (2 * Math.tan(fov / 2)) * 0.7;
   camera.position.set(
     center.x + distance,
     center.y + distance * 0.7,

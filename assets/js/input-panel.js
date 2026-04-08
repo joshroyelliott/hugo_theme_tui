@@ -6,8 +6,8 @@
 // - Only one input panel is active at a time.
 // - Textareas grow to fit their content.
 
-export function initInputPanels() {
-  document.querySelectorAll('.panel--input').forEach(setupPanel);
+export function initInputPanels(root) {
+  (root || document).querySelectorAll('.panel--input').forEach(setupPanel);
 }
 
 function setupPanel(panel) {

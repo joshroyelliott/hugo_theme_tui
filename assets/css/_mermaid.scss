@@ -18,4 +18,11 @@ pre.mermaid {
   &:not([data-processed="true"]) { min-height: 2rem; }
 
   svg { max-width: 100%; height: auto; }
+
+  // Mermaid derives edge/relationship label colours from primaryTextColor,
+  // which is dark for contrast on coloured nodes. Override here so labels
+  // on the dark diagram background stay readable.
+  .edgeLabel { color: var(--base05) !important; }
+  .relationshipLabel { fill: var(--base05) !important; }
+  .sectionTitle { fill: var(--base05) !important; }
 }

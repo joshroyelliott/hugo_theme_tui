@@ -1,6 +1,7 @@
 ---
 title: "Syntax Highlighting"
 date: 2025-01-05
+weight: 7
 tags: ["chroma", "code"]
 summary: "Code blocks coloured via Chroma, mapped to the base16 palette."
 ---

@@ -33,11 +33,34 @@ export function initListPreview() {
     return fetchPromise;
   };
 
+  const previewNote = previewPanel.querySelector('.panel__note');
+
   const render = (page) => {
     if (!page) return;
-    if (previewTitle) previewTitle.textContent = page.title;
     previewContent.innerHTML = page.content || '<p>(no content)</p>';
     previewPanel.dataset.currentUrl = page.url;
+
+    // Upgrade title to a clickable link.
+    if (previewTitle) {
+      previewTitle.innerHTML = '';
+      const a = document.createElement('a');
+      a.href = page.url;
+      a.textContent = page.title;
+      previewTitle.appendChild(a);
+    }
+
+    // Add open-in-page icon to the note area.
+    if (previewNote) {
+      previewNote.innerHTML = '';
+      const a = document.createElement('a');
+      a.href = page.url;
+      a.textContent = '\u2197'; // ↗
+      a.title = 'Open full page';
+      previewNote.appendChild(a);
+    }
+
+    activateScripts(previewContent);
+    previewContent.dispatchEvent(new CustomEvent('preview:load', { bubbles: true }));
   };
 
   const selectLink = (link) => {
@@ -74,13 +97,6 @@ export function initListPreview() {
     });
   });
 
-  // Click-through: clicking preview panel body opens the full page.
-  previewPanel.addEventListener('click', (e) => {
-    if (e.target.closest('a, button, input, textarea')) return;
-    const url = previewPanel.dataset.currentUrl;
-    if (url) window.location.href = url;
-  });
-
   // Auto-select first item.
   if (links[0]) {
     // Slight defer so the click doesn't race with scroll indicator init.
@@ -105,4 +121,17 @@ function resolveIndexURL(pathname) {
   let base = pathname;
   if (!base.endsWith('/')) base += '/';
   return base + 'index.json';
+}
+
+// innerHTML deliberately skips script execution. Replace each <script> with a
+// fresh element so the browser runs it.
+function activateScripts(container) {
+  container.querySelectorAll('script').forEach((old) => {
+    const el = document.createElement('script');
+    for (const attr of old.attributes) {
+      el.setAttribute(attr.name, attr.value);
+    }
+    el.textContent = old.textContent;
+    old.replaceWith(el);
+  });
 }

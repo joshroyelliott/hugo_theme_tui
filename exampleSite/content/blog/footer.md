@@ -1,6 +1,7 @@
 ---
 title: "Footer"
 date: 2025-01-12
+weight: 4
 tags: ["layout", "nav"]
 summary: "Copyright left, social links right, icon-only on mobile."
 ---

@@ -1,6 +1,7 @@
 ---
 title: "Theme"
 date: 2025-01-05
+weight: 5
 tags: ["palette", "typography"]
 summary: "Palette and typography flow from a single data file."
 ---

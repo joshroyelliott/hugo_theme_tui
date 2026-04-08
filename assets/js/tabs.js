@@ -9,8 +9,8 @@
 
 const COLUMN_MIN_WIDTH = 280;
 
-export function initTabs() {
-  document.querySelectorAll('.panel--tab').forEach(setupPanel);
+export function initTabs(root) {
+  (root || document).querySelectorAll('.panel--tab').forEach(setupPanel);
 }
 
 function setupPanel(panel) {

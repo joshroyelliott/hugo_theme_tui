@@ -1,6 +1,7 @@
 ---
 title: "Icons"
 date: 2025-01-08
+weight: 6
 tags: ["icons", "typography"]
 summary: "Nerd Font glyphs looked up by name from a single data file."
 ---
@@ -21,6 +22,10 @@ literal hex value.
 
 ## Available glyphs
 
+A selection of the glyphs shipped with the theme. Nerd Fonts includes
+thousands more — browse the full set at
+[nerdfonts.com/cheat-sheet](https://www.nerdfonts.com/cheat-sheet).
+
 {{< icon-grid >}}
 
 ## Adding icons
@@ -32,5 +37,4 @@ docker: f308
 kubernetes: fd31
 ```
 
-Codepoints are hex without a `0x` prefix. Browse available glyphs at
-[nerdfonts.com/cheat-sheet](https://www.nerdfonts.com/cheat-sheet).
+Codepoints are hex without a `0x` prefix.

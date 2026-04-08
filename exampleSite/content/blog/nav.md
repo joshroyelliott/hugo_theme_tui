@@ -1,6 +1,7 @@
 ---
 title: "Nav"
 date: 2025-01-19
+weight: 3
 tags: ["nav", "layout", "responsive"]
 summary: "Chevron-clipped bar with a title tab and link pills."
 ---

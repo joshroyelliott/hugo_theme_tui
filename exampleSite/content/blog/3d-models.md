@@ -1,6 +1,7 @@
 ---
 title: "3D Models"
 date: 2025-04-20
+weight: 10
 tags: ["three.js", "webgl"]
 summary: "Lazy-loaded Three.js viewer that reads its colours from the palette."
 ---

@@ -1,26 +1,45 @@
 ---
 title: "tui"
+profileImage: "/images/silhouette.svg"
+profileColor: "base0D"
+bio:
+  - key: "Name"
+    val: "Sam Nakamura"
+  - key: "Role"
+    val: "Software Engineer"
+  - key: "Location"
+    val: "Portland, OR"
+  - key: "Focus"
+    val: "Systems programming, CLI tools"
+  - key: "Status"
+    val: "Building developer tools at Acme Corp"
 ---
 
-Welcome to the **tui** theme demo site. Every surface you see — panels, code
-blocks, diagrams — is coloured from a single base16 palette stored in
-`data/colorscheme.yaml`.
+A terminal-inspired Hugo theme driven by a single
+[base16](https://github.com/tinted-theming/schemes) palette.
 
-## Try it
+<div style="display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; margin:1.5rem 0;">
+  {{< tinted-image src="/images/terminal.svg" color="base0D" alt="Terminal" width="48px" height="48px" >}}
+  {{< tinted-image src="/images/code.svg"     color="base0B" alt="Code"     width="48px" height="48px" >}}
+  {{< tinted-image src="/images/gear.svg"     color="base09" alt="Config"   width="48px" height="48px" >}}
+  {{< tinted-image src="/images/globe.svg"    color="base0C" alt="Web"      width="48px" height="48px" >}}
+  {{< tinted-image src="/images/heart.svg"    color="base08" alt="Heart"    width="48px" height="48px" >}}
+</div>
 
-Swap `exampleSite/data/colorscheme.yaml` with any other base16 scheme
-(Gruvbox, Nord, Catppuccin…) and rebuild. No component-level changes are
-required.
+## What's here
 
-## Browse
+- [Panel system](/blog/panels/) — titled, numbered containers with scroll indicators
+- [Responsive layouts](/blog/layouts/) — grid classes that collapse to a single column
+- [Syntax highlighting](/blog/syntax-highlighting/) — Chroma tokens mapped to the palette
+- [Tinted images](/blog/tinted-images/) — monochrome SVGs recoloured via CSS masks
+- [Mermaid diagrams](/blog/mermaid-diagrams/) — flowcharts and sequence diagrams in palette colours
+- [3D models](/blog/3d-models/) — Three.js viewer tinted to match
 
-- [Blog](/blog/) — posts rendered in a master-detail list/preview layout.
-  Each one is a self-referential showcase of a theme feature.
-- [About](/about/) — a single-page example.
-
-## Under the hood
-
-Colours are injected into `<head>` as CSS custom properties before the
-stylesheet loads, so vars are available on first paint. Chroma syntax
-highlighting, mermaid diagrams, and the 3D model viewer all read from the
-same variables, which means you get a consistent palette everywhere.
+```yaml
+# data/colorscheme.yaml
+name: Kanagawa
+scheme:
+  base00: "1F1F28"  # background
+  base05: "DCD7BA"  # foreground
+  base0D: "7E9CD8"  # accent
+```

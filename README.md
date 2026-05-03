@@ -1,73 +1,161 @@
-# tui — Hugo theme
+# tui
 
-A terminal-UI flavoured Hugo theme: base16-coloured TUI panels with titles
-sitting on the border, FiraCode Nerd Font, master-detail list+preview pages,
-and a palette-driven colour system that re-themes every surface (panels,
-syntax highlighting, mermaid diagrams, 3D viewers) from a single file.
+A terminal-UI Hugo theme. One base16 palette colours every surface — panels,
+syntax highlighting, mermaid diagrams, tinted images, and 3D model viewers.
+Swap a single YAML file and the entire site re-themes.
+
+<!-- screenshot / demo link -->
+<!-- ![tui theme screenshot](https://...) -->
+<!-- **[Live demo](https://...)** -->
+
+## Features
+
+| | |
+|---|---|
+| **Panel system** | A single parametric partial powers every titled container — plain, list, tab, preview, and input variants |
+| **Master-detail pages** | List pages render a scrollable item list beside a preview pane, backed by an in-memory JSON index — no round-trips |
+| **Base16 palette** | 16 colour slots injected as CSS custom properties before first paint; every component reads from them |
+| **Syntax highlighting** | Chroma CSS classes mapped to palette slots — code blocks re-theme automatically |
+| **Tinted images** | Monochrome SVGs/PNGs recoloured to any palette slot via CSS `mask-image` |
+| **Mermaid diagrams** | Loaded from CDN only on pages that use a `mermaid` code fence; diagram colours follow the palette |
+| **3D model viewer** | Three.js lazy-loaded per-page; scene colours read from palette variables and live-update on theme change |
+| **Nerd Font icons** | 58 glyphs mapped by name in `data/icons.yaml` — no icon font to load, just Unicode codepoints |
+| **Responsive** | Grid layouts collapse to single-column on small screens; nav shrinks to icon-only pills |
 
 ## Quick start
 
-```bash
-# As a git submodule
-git submodule add https://github.com/you/tui.git themes/tui
+### 1. Install
 
-# Then in your site's hugo.toml
-theme = "tui"
+```bash
+git submodule add https://github.com/joshroyelliott/hugo-theme-tui.git themes/tui
 ```
 
-Opt into the theme's markup defaults (Hugo's default strategy is `none`):
+### 2. Configure
 
 ```toml
+# hugo.toml
+theme = "tui"
+
+# Opt into the theme's markup defaults (Chroma classes, TOC, goldmark unsafe).
+# Hugo's default merge strategy is "none", so this is required.
 [markup]
   _merge = "deep"
-```
 
-And register the `previewindex` output on sections you want to use for the
-master-detail list/preview layout:
-
-```toml
+# Register the previewindex output for master-detail list/preview pages.
 [outputs]
   section = ["html", "rss", "previewindex"]
   term    = ["html", "rss", "previewindex"]
 ```
 
-## Colour palette
+### 3. Run
 
-The theme ships with Tokyo Night Storm as the default, defined in
-`data/colorscheme.yaml`. Override it by creating a file of the same name in
-your site root:
+```bash
+hugo server
+```
+
+## Configuration
+
+### Colour palette
+
+The theme reads `data/colorscheme.yaml` — a standard
+[base16](https://github.com/tinted-theming/schemes) scheme file. Hex values
+use no leading `#`.
 
 ```yaml
 # data/colorscheme.yaml
-name: Gruvbox Dark Medium
-author: morhetz
+name: Kanagawa
 scheme:
-  base00: "282828"
-  base01: "3c3836"
-  base02: "504945"
-  base03: "665c54"
-  base04: "bdae93"
-  base05: "d5c4a1"
-  base06: "ebdbb2"
-  base07: "fbf1c7"
-  base08: "fb4934"
-  base09: "fe8019"
-  base0A: "fabd2f"
-  base0B: "b8bb26"
-  base0C: "8ec07c"
-  base0D: "83a598"
-  base0E: "d3869b"
-  base0F: "d65d0e"
+  base00: "1F1F28"  # default background
+  base01: "16161D"  # lighter background
+  base02: "223249"  # selection
+  base03: "54546D"  # comments
+  base04: "727169"  # dark foreground
+  base05: "DCD7BA"  # default foreground
+  base06: "C8C093"  # light foreground
+  base07: "717C7C"  # light background
+  base08: "C34043"  # red
+  base09: "FFA066"  # orange
+  base0A: "C0A36E"  # yellow
+  base0B: "76946A"  # green
+  base0C: "6A9589"  # cyan
+  base0D: "7E9CD8"  # blue
+  base0E: "957FB8"  # purple
+  base0F: "D27E99"  # magenta
 ```
 
-Hex values use **no leading `#`**, matching the base16-schemes YAML spec. On
-build, these values are emitted as CSS custom properties (`--base00` …
+Drop in any base16 scheme (Gruvbox, Nord, Catppuccin, Dracula, etc.) and
+rebuild. Values are emitted as CSS custom properties (`--base00` through
 `--base0F`) in an inline `<style>` block before the stylesheet, so they're
-ready for first paint and accessible to JavaScript.
+available on first paint and accessible to JavaScript.
+
+### Navigation
+
+```toml
+[params]
+  titleIcon = "terminal"     # Nerd Font icon beside the site title
+
+[menu]
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 10
+    [menu.main.params]
+      icon = "document"      # optional icon from data/icons.yaml
+```
+
+### Footer
+
+```toml
+[params]
+  copyright = "&copy; 2025 Your Name"   # omit for auto "© year site.Title"
+
+  [[params.social]]
+    name = "GitHub"
+    url  = "https://github.com/you"
+    icon = "github"
+  [[params.social]]
+    name = "RSS"
+    url  = "/index.xml"
+    icon = "rss"
+```
+
+### SEO / meta
+
+```toml
+[params]
+  description = "Site description for meta tags"
+  author      = "Your Name"
+  ogImage     = "/images/og.png"         # fallback Open Graph image
+  twitter     = "yourhandle"             # without the @
+  favicon     = "/favicon.ico"           # default
+```
+
+### Home page profile
+
+The home layout optionally renders a profile sidebar when `bio` front matter
+is present in `content/_index.md`:
+
+```yaml
+# content/_index.md
+---
+title: "site name"
+profileImage: "/images/silhouette.svg"
+profileColor: "base0D"
+bio:
+  - key: "Name"
+    val: "Your Name"
+  - key: "Role"
+    val: "Software Engineer"
+  - key: "Location"
+    val: "City, ST"
+---
+```
+
+Omit the `bio` field to get the default two-panel layout (intro + recent posts).
 
 ## Panels
 
-Every titled container in the theme is the same parametric partial:
+Every titled container is the same parametric partial:
 
 ```go-html-template
 {{ partial "panel.html" (dict
@@ -78,56 +166,74 @@ Every titled container in the theme is the same parametric partial:
 ) }}
 ```
 
-Supported `variant` values: `""` (plain), `list`, `preview`, `tab`, `input`.
-See `exampleSite/layouts/showcase.html` for a live demo of every variant.
+| Parameter | Type | Description |
+|---|---|---|
+| `title` | string | Panel title |
+| `number` | int | Shown as `[N]` before the title |
+| `note` | string | Floated top-right |
+| `count` | string | Floated bottom-right (list counter) |
+| `variant` | string | `""`, `list`, `preview`, `tab`, `input` |
+| `scroll` | bool | Show scroll indicator |
+| `content` | HTML | Body content (plain / preview / input variants) |
+| `items` | Pages | Page collection (list variant) |
+| `tabs` | []dict | `{title, content}` pairs (tab variant) |
 
-## Master-detail list/preview
+## Shortcodes
 
-List pages (`layouts/_default/list.html`, `layouts/term.html`) render two
-panels side by side: a list of items and a preview pane. On page load,
-`list-preview.js` fetches `index.json` (emitted by the custom `previewindex`
-output format) once and uses it as an in-memory lookup, so clicking an item
-swaps the preview contents without a network round-trip.
+### tinted-image
 
-The list items remain real `<a>` links, so when JS is disabled they
-navigate to the full page like any other link.
+Recolours a monochrome image to any palette slot using CSS `mask-image`.
 
-## Syntax highlighting
-
-Chroma emits CSS classes (via `markup.highlight.noClasses = false` in the
-theme's `hugo.toml`), which `_chroma.scss` maps to the base16 palette. This
-means code blocks re-theme automatically alongside everything else.
-
-## Mermaid
-
-Mermaid loads from CDN **only on pages that use it**. Add a `mermaid` code
-fence and the render hook flips a per-page flag that `scripts-end.html`
-reads to conditionally inject the script. Diagram colours are passed via
-`themeVariables` pulled from the base16 palette.
-
-## 3D model viewer
-
-The `model-viewer` shortcode lazy-loads Three.js from jsdelivr only on pages
-that embed a viewer. Scene background and lights read from `--base00`,
-`--base05`, `--base0D`, and a `MutationObserver` on `<html>` will re-theme
-the scene if the palette changes live.
-
-```hugo
-{{< model-viewer src="/models/scene.glb" title="Scene" height="420" >}}
+```go-html-template
+{{< tinted-image src="/images/icon.svg" color="base0D" alt="Icon" width="64" height="64" >}}
 ```
+
+| Parameter | Default | Description |
+|---|---|---|
+| `src` | *required* | Path to a monochrome image |
+| `color` | `base0D` | Base16 slot name |
+| `alt` | | Accessible label |
+| `width` | `auto` | CSS width |
+| `height` | `auto` | CSS height |
+
+### model-viewer
+
+Embeds a 3D model in a TUI panel. Lazy-loads Three.js only on pages that use it.
+
+```go-html-template
+{{< model-viewer src="/models/scene.glb" title="Scene" height="420" >}}
+{{< model-viewer title="Demo" >}}  {{/* omit src for a procedural demo scene */}}
+```
+
+| Parameter | Default | Description |
+|---|---|---|
+| `src` | | Path to a `.glb` / `.gltf` file; omit for demo scene |
+| `title` | `Model` | Panel title |
+| `height` | `400` | Viewport height in pixels |
+| `note` | | Small label floated top-right |
+
+## Icons
+
+58 Nerd Font glyphs mapped by name in `data/icons.yaml`. Use them in templates:
+
+```go-html-template
+{{ partial "icon.html" "github" }}
+```
+
+Override or extend by creating your own `data/icons.yaml`.
 
 ## Development
 
-The theme is built using Hugo's `js.Build` (ESM bundling) and Dart Sass. On
-NixOS a flake is provided:
+The theme uses Hugo's `js.Build` (ESM bundling) and Dart Sass. A Nix flake is
+provided:
 
 ```bash
-cd themes/tui      # or wherever you cloned it
 nix develop
-cd exampleSite
-hugo server --themesDir ../.. --navigateToChanged --noHTTPCache
+hugo server -s exampleSite --themesDir ../.. --navigateToChanged --noHTTPCache
 ```
+
+Requires Hugo >= 0.128.0.
 
 ## License
 
-MIT
+[MIT](LICENSE) — Josh Elliott

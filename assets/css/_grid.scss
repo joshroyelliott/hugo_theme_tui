@@ -59,6 +59,14 @@
   @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
 }
 
+// Home page with profile sidebar: narrow bio column + wide content column.
+.home-grid--bio {
+  @extend %grid-base;
+  grid-template-columns: 1fr 2fr;
+  .stack { display: grid; grid-template-columns: 1fr; row-gap: $spacing-md; align-content: start; }
+  @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
+}
+
 // Master + stacked sidebars
 .grid-master-stack {
   @extend %grid-base;

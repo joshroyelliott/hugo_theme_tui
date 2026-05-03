@@ -1,19 +1,69 @@
 {{ define "main" }}
   {{- $recent := first 5 (where site.RegularPages "Section" "blog") -}}
-  <div class="home-grid">
-    {{ partial "panel.html" (dict
-      "title" .Title
-      "number" 1
-      "content" .Content
-    ) }}
+  {{- $total  := len (where site.RegularPages "Section" "blog") -}}
 
-    {{ partial "panel.html" (dict
-      "title" "Recent posts"
-      "number" 2
-      "variant" "list"
-      "items" $recent
-      "listKind" "links"
-      "count" (printf "%d of %d" (len $recent) (len (where site.RegularPages "Section" "blog")))
-    ) }}
-  </div>
+  {{- if .Params.bio -}}
+
+    {{/* ── Profile panel: tinted silhouette ── */}}
+    {{- $img   := .Params.profileimage | default "/images/silhouette.svg" -}}
+    {{- $color := .Params.profilecolor | default "base0D" -}}
+    {{- $profile := printf `<div style="display:flex;justify-content:center;padding:1rem 0"><div class="tinted-image" role="img" aria-label="Profile" style="background-color:var(--%s);-webkit-mask-image:url('%s');mask-image:url('%s');width:120px;height:120px"></div></div>` $color $img $img -}}
+
+    {{/* ── Bio panel: key/value list from front matter ── */}}
+    {{- $rows := slice -}}
+    {{- range .Params.bio -}}
+      {{- $rows = $rows | append (printf `<dt>%s</dt><dd>%s</dd>` .key .val) -}}
+    {{- end -}}
+    {{- $bio := printf `<dl class="info-list">%s</dl>` (delimit $rows "") -}}
+
+    <div class="home-grid--bio">
+      <div class="stack">
+        {{ partial "panel.html" (dict
+          "title"   "Profile"
+          "number"  1
+          "content" $profile
+        ) }}
+        {{ partial "panel.html" (dict
+          "title"   "Info"
+          "number"  2
+          "content" $bio
+        ) }}
+      </div>
+
+      <div class="stack">
+        {{ partial "panel.html" (dict
+          "title"   .Title
+          "number"  3
+          "content" .Content
+        ) }}
+        {{ partial "panel.html" (dict
+          "title"   "Recent posts"
+          "number"  4
+          "variant" "list"
+          "items"   $recent
+          "listKind" "links"
+          "count"   (printf "%d of %d" (len $recent) $total)
+        ) }}
+      </div>
+    </div>
+
+  {{- else -}}
+
+    <div class="home-grid">
+      {{ partial "panel.html" (dict
+        "title"   .Title
+        "number"  1
+        "content" .Content
+      ) }}
+      {{ partial "panel.html" (dict
+        "title"   "Recent posts"
+        "number"  2
+        "variant" "list"
+        "items"   $recent
+        "listKind" "links"
+        "count"   (printf "%d of %d" (len $recent) $total)
+      ) }}
+    </div>
+
+  {{- end -}}
 {{ end }}

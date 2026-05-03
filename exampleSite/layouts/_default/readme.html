@@ -1,0 +1,16 @@
+{{ define "main" }}
+  {{- $readme := resources.Get "README.md" -}}
+  {{- $rendered := .RenderString $readme.Content -}}
+  {{/* Strip the H1 — the panel title already identifies the page. */}}
+  {{- $rendered = replaceRE `(?s)<h1[^>]*>.*?</h1>\s*` "" $rendered 1 -}}
+
+  {{- $body := printf `<div class="single__body">%s</div>` $rendered -}}
+
+  {{ partial "panel.html" (dict
+    "title"   .Title
+    "variant" "preview"
+    "classes" "single content-responsive"
+    "scroll"  true
+    "content" $body
+  ) }}
+{{ end }}

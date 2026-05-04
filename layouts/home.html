@@ -2,7 +2,26 @@
   {{- $recent := first 5 (where site.RegularPages "Section" "blog") -}}
   {{- $total  := len (where site.RegularPages "Section" "blog") -}}
 
-  {{- if .Params.bio -}}
+  {{- if .Params.heroImage -}}
+
+    {{/* ── Hero mode: image + tagline on top, recent posts below ── */}}
+    {{- $color := .Params.heroColor | default "base0D" -}}
+    <div class="home-hero">
+      <div class="home-hero__image tinted-image" role="img" aria-label="{{ .Title }}"
+           style="background-color:var(--{{ $color }});-webkit-mask-image:url('{{ .Params.heroImage }}');mask-image:url('{{ .Params.heroImage }}');"></div>
+      {{- with .Params.heroTagline }}<p class="home-hero__tagline">{{ . }}</p>{{ end -}}
+    </div>
+
+    {{ partial "panel.html" (dict
+      "title"   "Recent posts"
+      "number"  1
+      "variant" "list"
+      "items"   $recent
+      "listKind" "links"
+      "count"   (printf "%d of %d" (len $recent) $total)
+    ) }}
+
+  {{- else if .Params.bio -}}
 
     {{/* ── Profile panel: tinted silhouette ── */}}
     {{- $img   := .Params.profileimage | default "/images/silhouette.svg" -}}

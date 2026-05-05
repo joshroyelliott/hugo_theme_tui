@@ -1,0 +1,41 @@
+@use "tokens" as *;
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1rem 0;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.25rem 0.75rem;
+  background: var(--base01);
+  color: var(--base05);
+  border: 1px solid var(--base03);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+  opacity: 0.55;
+
+  &.is-active {
+    opacity: 1;
+    border-color: var(--posttype-color, var(--base05));
+  }
+
+  &__marker {
+    color: var(--posttype-color, var(--base05));
+    font-size: 0.85em;
+  }
+
+  &--all {
+    --posttype-color: var(--base05);
+  }
+
+  &:hover { opacity: 0.85; }
+  &.is-active:hover { opacity: 1; }
+}

@@ -14,6 +14,13 @@ if (document.querySelector('.panel--list') && document.querySelector('.panel--pr
     .catch((err) => console.error('[tui] list-preview init failed:', err));
 }
 
+// Filter chips: only load when at least one .filter-chips container is present.
+if (document.querySelector('.filter-chips')) {
+  import('./filter-chips.js')
+    .then((m) => m.initFilterChips())
+    .catch((err) => console.error('[tui] filter-chips init failed:', err));
+}
+
 // 3D viewer: only load three.js when a viewer is on the page.
 if (document.querySelector('.tui-model-viewer')) {
   import('./model-viewer.js')

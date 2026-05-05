@@ -1,0 +1,25 @@
+{{/*
+  filter-chips.html — render a row of multi-select filter chips for post types.
+
+  Dict fields:
+    types       map     site.Data.posttypes (required)
+    storageKey  string  localStorage key for persistence (e.g. "tui:filter:blog")
+    targetId    string  DOM id of the container whose [data-posttype] children are filtered
+*/}}
+{{- $types := .types -}}
+{{- $storage := .storageKey | default "tui:filter:default" -}}
+{{- $target := .targetId | default "list-panel" -}}
+{{- if $types -}}
+<div class="filter-chips" data-storage-key="{{ $storage }}" data-target="{{ $target }}" role="toolbar" aria-label="Filter posts by type">
+  <button type="button" class="filter-chip filter-chip--all is-active" data-chip-all aria-pressed="true">All</button>
+  {{- range $key, $def := $types -}}
+    <button type="button" class="filter-chip is-active"
+            data-chip="{{ $key }}"
+            aria-pressed="true"
+            style="--posttype-color:var(--{{ $def.color }})">
+      <span class="filter-chip__marker" aria-hidden="true">●</span>
+      <span class="filter-chip__label">{{ $def.label }}</span>
+    </button>
+  {{- end -}}
+</div>
+{{- end -}}

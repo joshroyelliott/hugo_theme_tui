@@ -1,0 +1,14 @@
+# Default post-type registry. Sites override by placing their own data/post-types.yaml.
+# Each entry: key is the value used in front matter `posttype:`.
+# Fields: label (string, human-readable), color (base16 slot name), icon (optional, key in data/icons.yaml).
+project:
+  label: "Project"
+  color: "base0B"
+  icon:  "code"
+thought:
+  label: "Thought"
+  color: "base0D"
+  icon:  "comment"
+note:
+  label: "Note"
+  color: "base0A"

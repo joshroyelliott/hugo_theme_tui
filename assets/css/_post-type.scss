@@ -1,0 +1,14 @@
+@use "tokens" as *;
+
+.panel__list-item--typed {
+  border-left: 2px solid var(--posttype-color, var(--base04));
+  padding-left: 0.5rem;
+}
+
+.panel__list-marker {
+  display: inline-block;
+  margin-right: 0.5em;
+  color: var(--posttype-color, var(--base04));
+  font-size: 0.85em;
+  vertical-align: middle;
+}

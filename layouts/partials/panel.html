@@ -57,10 +57,26 @@
       <ul class="panel__list">
         {{- $kind := default "links" .listKind -}}
         {{- range .items -}}
-          <li class="panel__list-item" data-url="{{ .RelPermalink }}">
+          {{- $type := "" -}}
+          {{- $typeColor := "" -}}
+          {{- $rawType := .Params.posttype -}}
+          {{- with $rawType -}}
+            {{- $def := index site.Data.posttypes . -}}
+            {{- if $def -}}
+              {{- $type = . -}}
+              {{- $typeColor = $def.color -}}
+            {{- end -}}
+          {{- end -}}
+          <li class="panel__list-item{{ if $type }} panel__list-item--typed{{ end }}"
+              data-url="{{ .RelPermalink }}"
+              {{ with $type }}data-posttype="{{ . }}"{{ end }}
+              {{ with $typeColor }}style="--posttype-color:var(--{{ . }})"{{ end }}>
             <a href="{{ .RelPermalink }}"
                class="panel__list-link{{ if eq $kind "preview" }} js-preview-link{{ end }}"
                data-url="{{ .RelPermalink }}">
+              {{- if $type -}}
+                <span class="panel__list-marker" aria-hidden="true">●</span>
+              {{- end -}}
               <span class="panel__list-title">{{ .Title }}</span>
               {{- with .Date }}<span class="panel__list-meta"><time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2006-01-02" }}</time></span>{{ end -}}
             </a>

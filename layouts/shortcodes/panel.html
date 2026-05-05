@@ -1,0 +1,27 @@
+{{/*
+  panel shortcode — markdown-friendly wrapper around partials/panel.html.
+
+  Named args (all optional except title):
+    title    string
+    number   int
+    note     string
+    variant  string  "" | "list" | "tab" | "preview" | "input"
+    count    string
+    scroll   bool
+    classes  string
+    id       string
+
+  Inner body is rendered as markdown and passed as `content`.
+*/}}
+{{- $content := .Inner | .Page.RenderString -}}
+{{ partial "panel.html" (dict
+  "title"   (.Get "title")
+  "number"  (.Get "number")
+  "note"    (.Get "note")
+  "variant" (.Get "variant")
+  "count"   (.Get "count")
+  "scroll"  (eq (.Get "scroll") "true")
+  "classes" (.Get "classes")
+  "id"      (.Get "id")
+  "content" $content
+) }}

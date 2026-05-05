@@ -1,0 +1,78 @@
+// Print rules. Sitewide — applies to every page so blog posts also print cleanly.
+// Strategy: strip nav/footer/filter-chips/scroll-indicators; flatten panel chrome
+// to plain headings; force black on white; remove backgrounds.
+
+@media print {
+  // Force readable contrast regardless of the active palette.
+  :root {
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  body {
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  // Hide chrome that has no value on paper.
+  nav,
+  footer,
+  .filter-chips,
+  .js-scroll-indicator,
+  .panel__tabs,
+  .panel__separator,
+  .no-print {
+    display: none !important;
+  }
+
+  // Flatten panels: remove borders/backgrounds, drop the [N] badge,
+  // turn the title into an h2.
+  .panel {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 0 1rem 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .panel__header {
+    border-bottom: 1px solid #000 !important;
+    padding: 0 0 0.25rem 0 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .panel__number {
+    display: none !important;
+  }
+
+  .panel__title {
+    font-size: 1.15rem !important;
+    font-weight: bold !important;
+    color: #000 !important;
+  }
+
+  .panel__content {
+    color: #000 !important;
+  }
+
+  // Color-coded list items: drop the marker and accent border for print.
+  .panel__list-item--typed {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+
+  .panel__list-marker {
+    display: none !important;
+  }
+
+  // Links: keep underline; show URL after the link text for context.
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #555;
+  }
+}

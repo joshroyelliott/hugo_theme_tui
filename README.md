@@ -212,6 +212,57 @@ Embeds a 3D model in a TUI panel. Lazy-loads Three.js only on pages that use it.
 | `height` | `400` | Viewport height in pixels |
 | `note` | | Small label floated top-right |
 
+## Post types
+
+A registry mapping post-type keys to a label and palette slot.
+
+```yaml
+# data/posttypes.yaml — sites override theme default
+project:
+  label: "Project"
+  color: "base0B"
+  icon:  "code"
+```
+
+Posts opt in via front matter:
+
+```yaml
+posttype: project
+```
+
+When set and registered, the post's list item gains a colored marker, accent border,
+and a `data-posttype` attribute for use by filter chips.
+
+## Filter chips
+
+`partials/filter-chips.html` renders multi-select chips driven by `site.Data.posttypes`.
+Selected types persist to `localStorage`. Wired into `_default/list.html` automatically
+when a section has typed posts. To use elsewhere:
+
+```go-html-template
+{{ partial "filter-chips.html" (dict
+  "types"      site.Data.posttypes
+  "storageKey" "tui:filter:custom"
+  "targetId"   "my-list-id"
+) }}
+```
+
+## Hero home mode
+
+Add `heroImage` (and optionally `heroTagline`, `heroColor`) to `content/_index.md`
+front matter to render a centered hero image with tagline and a single recent-posts
+panel below. Takes precedence over `bio` mode.
+
+## Print stylesheet
+
+Sitewide `@media print` rules strip nav/footer/chips and flatten panels for clean
+PDF export via the browser's Print dialog. No configuration required.
+
+## Panel shortcode
+
+Use `{{</* panel title="…" number="…" */>}}…{{</* /panel */>}}` in markdown to emit a panel.
+Inner body rendered as markdown.
+
 ## Icons
 
 58 Nerd Font glyphs mapped by name in `data/icons.yaml`. Use them in templates:

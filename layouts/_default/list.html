@@ -1,6 +1,21 @@
 {{ define "main" }}
   {{- $pages := .Pages -}}
   {{- $count := len $pages -}}
+  {{- $hasTyped := false -}}
+  {{- range $pages -}}
+    {{- if and .Params.posttype (index site.Data.posttypes .Params.posttype) -}}
+      {{- $hasTyped = true -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if $hasTyped -}}
+    {{ partial "filter-chips.html" (dict
+      "types"      site.Data.posttypes
+      "storageKey" (printf "tui:filter:%s" .Section)
+      "targetId"   "list-panel"
+    ) }}
+  {{- end -}}
+
   <div class="grid-list-preview content-responsive">
     {{ partial "panel.html" (dict
       "title" .Title

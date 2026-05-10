@@ -33,8 +33,6 @@ export function initListPreview() {
     return fetchPromise;
   };
 
-  const previewNote = previewPanel.querySelector('.panel__note');
-
   const render = (page) => {
     if (!page) return;
     previewContent.innerHTML = page.content || '<p>(no content)</p>';
@@ -49,21 +47,11 @@ export function initListPreview() {
       previewTitle.appendChild(a);
     }
 
-    // Add open-in-page icon to the note area.
-    if (previewNote) {
-      previewNote.innerHTML = '';
-      const a = document.createElement('a');
-      a.href = page.url;
-      a.textContent = '\u2197'; // ↗
-      a.title = 'Open full page';
-      previewNote.appendChild(a);
-    }
-
     activateScripts(previewContent);
     previewContent.dispatchEvent(new CustomEvent('preview:load', { bubbles: true }));
   };
 
-  const previewLabelSlot = previewPanel.querySelector('[data-preview-type-label]');
+  const previewNoteSlot = previewPanel.querySelector('[data-preview-note]');
 
   const updatePreviewAccent = (link) => {
     const item = link?.closest('.panel__list-item');
@@ -80,8 +68,8 @@ export function initListPreview() {
       previewPanel.classList.remove('has-active');
     }
 
-    if (previewLabelSlot) {
-      previewLabelSlot.textContent = label ? ` · ${label}` : '';
+    if (previewNoteSlot) {
+      previewNoteSlot.textContent = label ? `(${label})` : '';
     }
   };
 

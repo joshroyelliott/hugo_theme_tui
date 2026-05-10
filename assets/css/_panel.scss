@@ -196,6 +196,27 @@
     }
   }
 
+  // Preview panel accent. Default to base0B; list-preview.js overrides this
+  // per active item by setting --preview-accent inline. Applied via .has-active
+  // (set by JS when an item is selected) and by hover, both reading the same
+  // variable so they coordinate.
+  &--preview {
+    --preview-accent: var(--base0B);
+
+    &.has-active {
+      border-color: var(--preview-accent);
+      .panel__number,
+      .panel__title { color: var(--preview-accent); font-weight: 700; }
+    }
+
+    &:hover {
+      border-color: var(--preview-accent);
+      .panel__number,
+      .panel__title,
+      .panel__main-title { color: var(--preview-accent); font-weight: 700; }
+    }
+  }
+
   // ─── tab variant ─────────────────────────────────────────────────────────
   &--tab {
     // Constrain the header so tabs can't run under the note or past the

@@ -154,9 +154,9 @@
         transition: background-color 0.2s ease;
       }
       &:hover {
-        color: var(--base0B);
+        color: var(--posttype-color, var(--base0B));
         text-decoration: none;
-        &::before { background-color: var(--base0B); }
+        &::before { background-color: var(--posttype-color, var(--base0B)); }
       }
       &--active {
         color: var(--base06);
@@ -172,7 +172,7 @@
     border-color: var(--base04);
     // Match header elements to the dimmer border.
     .panel__number { color: var(--base04); }
-    .panel__note   { color: var(--base04); }
+    .panel__note   { color: var(--preview-accent, var(--base04)); }
 
     .panel__title a,
     .panel__note a {

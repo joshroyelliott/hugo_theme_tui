@@ -7,12 +7,3 @@
   margin-right: 0.4em;
   color: var(--posttype-color, var(--base04));
 }
-
-// Type label rendered in the preview panel header (e.g. " · Project").
-// Color flows from --preview-accent set on the panel by list-preview.js.
-.panel__type-label {
-  margin-left: 0.4em;
-  color: var(--preview-accent, var(--base04));
-  font-weight: 600;
-  font-size: 0.85em;
-}

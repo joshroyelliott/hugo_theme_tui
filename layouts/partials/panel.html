@@ -2,19 +2,20 @@
   panel.html — single parametric panel.
 
   Dict fields:
-    title       string           required-ish, panel title
-    number      int              optional, shown as "[N]" before title
-    note        string           optional, floats top-right
-    count       string           optional, floats bottom-right (list counter)
-    variant     string           "" | "list" | "tab" | "preview" | "input"
-    scroll      bool             add scroll indicator
-    classes     string           extra classes
-    id          string           DOM id
-    content     HTML-safe string used when no items/tabs (variant "" | preview | input)
-    items       Pages            required for variant="list"
-    tabs        []{title,content} required for variant="tab"
-    checkWidth  bool             variant=tab: responsive column mode
-    listKind    string           "links" (default) | "preview" — controls list item JS hook
+    title           string           required-ish, panel title
+    number          int              optional, shown as "[N]" before title
+    note            string           optional, floats top-right
+    count           string           optional, floats bottom-right (list counter)
+    variant         string           "" | "list" | "tab" | "preview" | "input"
+    scroll          bool             add scroll indicator
+    classes         string           extra classes
+    id              string           DOM id
+    content         HTML-safe string used when no items/tabs (variant "" | preview | input)
+    items           Pages            required for variant="list"
+    tabs            []{title,content} required for variant="tab"
+    checkWidth      bool             variant=tab: responsive column mode
+    listKind        string           "links" (default) | "preview" — controls list item JS hook
+    typeLabelSlot   bool             render an empty <span data-preview-type-label> in the header (filled by JS)
 */}}
 {{- $variant := default "" .variant -}}
 {{- $classes := slice "panel" -}}
@@ -33,6 +34,9 @@
     {{- end -}}
     {{- with .title -}}
       <span class="panel__title">{{ . }}</span>
+    {{- end -}}
+    {{- if .typeLabelSlot -}}
+      <span class="panel__type-label" data-preview-type-label></span>
     {{- end -}}
     {{- if eq $variant "tab" -}}
       {{- with .tabs -}}
@@ -59,25 +63,28 @@
         {{- range .items -}}
           {{- $type := "" -}}
           {{- $typeColor := "" -}}
+          {{- $typeLabel := "" -}}
           {{- $rawType := .Params.posttype -}}
           {{- with $rawType -}}
             {{- $def := index site.Data.posttypes . -}}
             {{- if $def -}}
               {{- $type = . -}}
               {{- $typeColor = $def.color -}}
+              {{- $typeLabel = $def.label -}}
             {{- end -}}
           {{- end -}}
           <li class="panel__list-item{{ if $type }} panel__list-item--typed{{ end }}"
               data-url="{{ .RelPermalink }}"
               {{ with $type }}data-posttype="{{ . }}"{{ end }}
+              {{ with $typeLabel }}data-posttype-label="{{ . }}"{{ end }}
               {{ with $typeColor }}style="--posttype-color:var(--{{ . }})"{{ end }}>
             <a href="{{ .RelPermalink }}"
                class="panel__list-link{{ if eq $kind "preview" }} js-preview-link{{ end }}"
                data-url="{{ .RelPermalink }}">
-              {{- if $type -}}
-                <span class="panel__list-marker" aria-hidden="true">●</span>
-              {{- end -}}
-              <span class="panel__list-title">{{ .Title }}</span>
+              <span class="panel__list-title">
+                {{- if $type -}}<span class="panel__list-marker" aria-hidden="true">●</span>{{- end -}}
+                {{ .Title }}
+              </span>
               {{- with .Date }}<span class="panel__list-meta"><time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2006-01-02" }}</time></span>{{ end -}}
             </a>
           </li>

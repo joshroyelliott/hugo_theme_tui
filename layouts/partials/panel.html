@@ -4,7 +4,8 @@
   Dict fields:
     title           string           required-ish, panel title
     number          int              optional, shown as "[N]" before title
-    note            string           optional, floats top-right
+    note            string           optional, floats top-right (build-time text wrapped in parens)
+    noteSlot        bool             render an empty <div data-preview-note> note slot for JS to fill at runtime; ignored if .note is set
     count           string           optional, floats bottom-right (list counter)
     variant         string           "" | "list" | "tab" | "preview" | "input"
     scroll          bool             add scroll indicator
@@ -15,7 +16,6 @@
     tabs            []{title,content} required for variant="tab"
     checkWidth      bool             variant=tab: responsive column mode
     listKind        string           "links" (default) | "preview" — controls list item JS hook
-    typeLabelSlot   bool             render an empty <span data-preview-type-label> in the header (filled by JS)
 */}}
 {{- $variant := default "" .variant -}}
 {{- $classes := slice "panel" -}}
@@ -35,9 +35,6 @@
     {{- with .title -}}
       <span class="panel__title">{{ . }}</span>
     {{- end -}}
-    {{- if .typeLabelSlot -}}
-      <span class="panel__type-label" data-preview-type-label></span>
-    {{- end -}}
     {{- if eq $variant "tab" -}}
       {{- with .tabs -}}
         <span class="panel__separator"></span>
@@ -55,6 +52,7 @@
   </div>
 
   {{- with .note }}<div class="panel__note">({{ . }})</div>{{ end }}
+  {{- if and (not .note) .noteSlot -}}<div class="panel__note" data-preview-note></div>{{- end -}}
 
   {{- if eq $variant "list" -}}
     <div class="panel__content">

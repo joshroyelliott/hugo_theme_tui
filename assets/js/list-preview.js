@@ -63,11 +63,34 @@ export function initListPreview() {
     previewContent.dispatchEvent(new CustomEvent('preview:load', { bubbles: true }));
   };
 
+  const previewLabelSlot = previewPanel.querySelector('[data-preview-type-label]');
+
+  const updatePreviewAccent = (link) => {
+    const item = link?.closest('.panel__list-item');
+    const color = item
+      ? getComputedStyle(item).getPropertyValue('--posttype-color').trim()
+      : '';
+    const label = item?.dataset.posttypeLabel || '';
+
+    if (color) {
+      previewPanel.style.setProperty('--preview-accent', color);
+      previewPanel.classList.add('has-active');
+    } else {
+      previewPanel.style.removeProperty('--preview-accent');
+      previewPanel.classList.remove('has-active');
+    }
+
+    if (previewLabelSlot) {
+      previewLabelSlot.textContent = label ? ` · ${label}` : '';
+    }
+  };
+
   const selectLink = (link) => {
     links.forEach((l) => l.classList.remove('panel__list-link--active'));
     link.classList.add('panel__list-link--active');
     const idx = links.indexOf(link) + 1;
     listPanel.setAttribute('data-count', `${idx} of ${links.length}`);
+    updatePreviewAccent(link);
   };
 
   links.forEach((link) => {

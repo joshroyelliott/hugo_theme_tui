@@ -1,14 +1,18 @@
 @use "tokens" as *;
 
-.panel__list-item--typed {
-  border-left: 2px solid var(--posttype-color, var(--base04));
-  padding-left: 0.5rem;
+// Inline marker beside the title. Color flows from --posttype-color set on the
+// parent <li> by panel.html.
+.panel__list-marker {
+  display: inline;
+  margin-right: 0.4em;
+  color: var(--posttype-color, var(--base04));
 }
 
-.panel__list-marker {
-  display: inline-block;
-  margin-right: 0.5em;
-  color: var(--posttype-color, var(--base04));
+// Type label rendered in the preview panel header (e.g. " · Project").
+// Color flows from --preview-accent set on the panel by list-preview.js.
+.panel__type-label {
+  margin-left: 0.4em;
+  color: var(--preview-accent, var(--base04));
+  font-weight: 600;
   font-size: 0.85em;
-  vertical-align: middle;
 }

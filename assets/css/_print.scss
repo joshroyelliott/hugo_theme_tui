@@ -55,12 +55,7 @@
     color: #000 !important;
   }
 
-  // Color-coded list items: drop the marker and accent border for print.
-  .panel__list-item--typed {
-    border-left: none !important;
-    padding-left: 0 !important;
-  }
-
+  // Color-coded list items: hide the inline marker for print.
   .panel__list-marker {
     display: none !important;
   }

@@ -3,39 +3,49 @@
 .filter-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1rem;
   margin: 0 0 1rem 0;
 }
 
 .filter-chip {
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0.4em;
-  padding: 0.25rem 0.75rem;
-  background: var(--base01);
-  color: var(--base05);
-  border: 1px solid var(--base03);
-  border-radius: 999px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: inherit;
+  color: var(--base05);
   cursor: pointer;
-  transition: opacity 0.15s ease, border-color 0.15s ease;
-  opacity: 0.55;
+  line-height: 1.4;
 
-  &.is-active {
-    opacity: 1;
-    border-color: var(--posttype-color, var(--base05));
-  }
+  &__bracket { color: var(--base04); }
 
-  &__marker {
+  &__mark {
     color: var(--posttype-color, var(--base05));
     font-size: 0.85em;
+    line-height: 1;
   }
 
-  &--all {
-    --posttype-color: var(--base05);
+  &__label { color: var(--base05); }
+
+  // Inactive state: keep brackets visible (preserves spacing), hide the mark
+  // via visibility, dim the label.
+  &:not(.is-active) {
+    .filter-chip__mark { visibility: hidden; }
+    .filter-chip__label { color: var(--base03); }
   }
 
-  &:hover { opacity: 0.85; }
-  &.is-active:hover { opacity: 1; }
+  // Hover: brighten the brackets. Active state's coloring takes priority.
+  &:hover .filter-chip__bracket { color: var(--base05); }
+
+  &:focus-visible {
+    outline: 1px dotted var(--base05);
+    outline-offset: 2px;
+  }
+
+  // The "All" chip uses the foreground color when active.
+  &--all { --posttype-color: var(--base05); }
 }

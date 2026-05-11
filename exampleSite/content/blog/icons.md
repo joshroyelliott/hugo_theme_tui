@@ -3,6 +3,7 @@ title: "Icons"
 date: 2025-01-08
 weight: 6
 tags: ["icons", "typography"]
+posttype: style
 summary: "Nerd Font glyphs looked up by name from a single data file."
 ---
 

@@ -1,0 +1,15 @@
+# Demo registry for the tui showcase. Overrides the theme default at
+# data/posttypes.yaml. Slot colours chosen to be visibly distinct from the
+# theme's default project/thought/note slots.
+layout:
+  label: "Layout"
+  color: "base0D"   # blue — visual structure
+  icon:  "code"
+style:
+  label: "Style"
+  color: "base0E"   # purple — palette / typography / visuals
+  icon:  "code"
+content:
+  label: "Content"
+  color: "base0B"   # green — rich embeds
+  icon:  "code"

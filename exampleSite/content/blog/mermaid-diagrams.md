@@ -3,6 +3,7 @@ title: "Mermaid Diagrams"
 date: 2025-03-15
 weight: 9
 tags: ["mermaid", "diagrams"]
+posttype: content
 summary: "Flowcharts, sequences, and more — coloured by the site palette."
 ---
 

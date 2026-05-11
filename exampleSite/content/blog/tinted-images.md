@@ -3,6 +3,7 @@ title: "Tinted Images"
 date: 2025-01-10
 weight: 8
 tags: ["palette", "images"]
+posttype: style
 summary: "Monochrome images tinted to any base16 colour with CSS mask-image."
 ---
 

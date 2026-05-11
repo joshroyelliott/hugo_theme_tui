@@ -3,6 +3,7 @@ title: "Layouts"
 date: 2025-01-22
 weight: 2
 tags: ["layout", "grid"]
+posttype: layout
 summary: "Page skeleton and a small family of responsive grid classes."
 ---
 

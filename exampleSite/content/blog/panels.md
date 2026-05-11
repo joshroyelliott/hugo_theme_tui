@@ -3,6 +3,7 @@ title: "Panels"
 date: 2025-02-10
 weight: 1
 tags: ["panels", "layout"]
+posttype: layout
 summary: "Every titled container in the theme is one parametric partial."
 ---
 

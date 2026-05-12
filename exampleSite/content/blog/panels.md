@@ -26,6 +26,33 @@ highlight together.
 
 {{< panel-demo variant="" title="About" content="<p>A titled container with freeform HTML content. The title sits on the top border.</p>" >}}
 
+## From markdown
+
+The `{{</* panel */>}}` shortcode is a markdown wrapper around the same partial.
+Same args, but you can write the body as markdown — Chroma highlighting,
+link rendering, inline emphasis, fenced code blocks all work as in the
+rest of the page.
+
+Named args (all optional except where the underlying partial requires them):
+`title`, `number`, `note`, `variant`, `count`, `scroll`, `classes`, `id`.
+
+```markdown
+{{</* panel title="From markdown" number="42" note="self-demo" */>}}
+Inner body rendered as **markdown** — `inline code`, [links](/),
+and a code fence work as usual.
+{{</* /panel */>}}
+```
+
+And here it is rendered for real:
+
+{{< panel title="From markdown" number="42" note="self-demo" >}}
+Inner body rendered as **markdown** — `inline code`, [links](/),
+and a code fence work as usual.
+{{< /panel >}}
+
+The inner body goes through the page's normal markdown pipeline, so
+Chroma highlighting and link rendering work without any extra wiring.
+
 ## List + Preview
 
 A list panel paired with a preview panel. Clicking an item in the list

@@ -1,16 +1,23 @@
 {{ define "main" }}
   {{- $pages := .Pages -}}
   {{- $count := len $pages -}}
-  {{- $hasTyped := false -}}
+  {{/* Build the set of post-types actually used by this section's pages so the
+       filter chips only show options that have at least one item behind them.
+       Sites whose data/posttypes.yaml merges with the theme default (or with
+       any other source) won't render dead chips for unused types. */}}
+  {{- $usedTypes := dict -}}
   {{- range $pages -}}
-    {{- if and .Params.posttype (index site.Data.posttypes .Params.posttype) -}}
-      {{- $hasTyped = true -}}
+    {{- with .Params.posttype -}}
+      {{- $def := index site.Data.posttypes . -}}
+      {{- if $def -}}
+        {{- $usedTypes = merge $usedTypes (dict . $def) -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 
-  {{- if $hasTyped -}}
+  {{- if $usedTypes -}}
     {{ partial "filter-chips.html" (dict
-      "types"      site.Data.posttypes
+      "types"      $usedTypes
       "storageKey" (printf "tui:filter:%s" .Section)
       "targetId"   "list-panel"
     ) }}
